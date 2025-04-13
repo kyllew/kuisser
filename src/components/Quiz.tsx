@@ -71,15 +71,15 @@ export default function Quiz({ questions }: QuizProps) {
     }));
   };
 
-  const handleNext = () => {
+  const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
 
-  const handlePrevious = () => {
+  const handlePreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(prev => prev - 1);
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 
@@ -266,14 +266,14 @@ export default function Quiz({ questions }: QuizProps) {
         <div className="navigation-buttons">
           <Button
             variant="normal"
-            onClick={handlePrevious}
+            onClick={handlePreviousQuestion}
             disabled={currentQuestionIndex === 0}
           >
             Previous
           </Button>
           <Button
             variant="normal"
-            onClick={handleNext}
+            onClick={handleNextQuestion}
             disabled={currentQuestionIndex === questions.length - 1}
           >
             Next
