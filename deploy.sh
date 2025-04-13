@@ -9,6 +9,11 @@ APP_DIR="/var/www/kuisser"
 TEMP_DIR="/tmp/kuisser"
 SERVER_DIR="/var/www/kuisser/server"
 
+# Clean up existing directories
+echo "Cleaning up existing directories..."
+sudo rm -rf $TEMP_DIR
+sudo rm -rf $APP_DIR
+
 # Install required packages
 echo "Installing required packages..."
 sudo apt-get update
@@ -177,6 +182,8 @@ sudo systemctl restart nginx
 echo "Cleaning up..."
 cd /
 sudo rm -rf $TEMP_DIR
+sudo rm -rf /tmp/awscliv2.zip
+sudo rm -rf /tmp/aws
 
 echo "Deployment completed successfully!"
 echo "Application is running at http://localhost"
