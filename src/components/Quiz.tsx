@@ -10,7 +10,6 @@ interface QuizProps {
 export default function Quiz({ questions }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: string[] }>({});
-  const [showExplanation, setShowExplanation] = useState<{ [key: number]: boolean }>({});
   const [submitted, setSubmitted] = useState<{ [key: number]: boolean }>({});
   const [score, setScore] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState<Map<number, { selectedAnswers: string[]; isCorrect: boolean }>>(new Map());
@@ -55,7 +54,6 @@ export default function Quiz({ questions }: QuizProps) {
   const handleSubmit = () => {
     if (selectedAnswersForCurrentQuestion.length === 0) return;
     setSubmitted(prev => ({ ...prev, [currentQuestionIndex]: true }));
-    setShowExplanation(prev => ({ ...prev, [currentQuestionIndex]: true }));
     const isCorrect = currentQuestion.isMultipleAnswer
       ? selectedAnswersForCurrentQuestion.length === currentQuestion.answer.length &&
         selectedAnswersForCurrentQuestion.every(a => currentQuestion.answer.includes(a))
@@ -82,13 +80,6 @@ export default function Quiz({ questions }: QuizProps) {
     }
   };
 
-  const handleToggleExplanation = () => {
-    setShowExplanation(prev => ({
-      ...prev,
-      [currentQuestionIndex]: !prev[currentQuestionIndex]
-    }));
-  };
-
   const handleToggleDisclaimer = () => {
     setShowDisclaimer(prev => ({
       ...prev,
@@ -100,7 +91,6 @@ export default function Quiz({ questions }: QuizProps) {
     setCurrentQuestionIndex(0);
     setSelectedAnswers({});
     setSubmitted({});
-    setShowExplanation({});
     setShowDisclaimer({});
     setScore(0);
     setAnsweredQuestions(new Map());
