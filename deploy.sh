@@ -3,36 +3,16 @@
 # Exit on any error
 set -e
 
-# Check if AWS CLI is installed
-if ! command -v aws &> /dev/null; then
-    echo "AWS CLI is not installed. Installing..."
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    unzip awscliv2.zip
-    sudo ./aws/install
-    rm -rf aws awscliv2.zip
-fi
-
 # Configuration
-S3_BUCKET="kuisser"  # Replace with your S3 bucket name
+GITHUB_REPO="https://github.com/kyllew/kuisser.git"
 APP_DIR="/var/www/kuisser"
 TEMP_DIR="/tmp/kuisser"
 SERVER_DIR="/var/www/kuisser/server"
 
-# Create temporary directory
-mkdir -p $TEMP_DIR
-cd $TEMP_DIR
-
-# Download files from S3
-echo "Downloading files from S3..."
-aws s3 cp s3://$S3_BUCKET/kuisser.zip .
-
-# Unzip the files
-echo "Extracting files..."
-unzip -q kuisser.zip
-rm kuisser.zip
-
-# Setup Node.js environment
-echo "Setting up Node.js environment..."
+# Install required packages
+echo "Installing required packages..."
+sudo apt-get update
+sudo apt-get install -y git curl unzip
 
 # Install Node.js directly using package manager
 echo "Installing Node.js 18.x..."
@@ -42,6 +22,14 @@ sudo apt-get install -y nodejs
 # Verify Node.js installation
 node --version
 npm --version
+
+# Create temporary directory
+mkdir -p $TEMP_DIR
+cd $TEMP_DIR
+
+# Clone repository
+echo "Cloning repository from GitHub..."
+git clone $GITHUB_REPO .
 
 # Install global dependencies
 echo "Installing global dependencies..."
@@ -73,9 +61,30 @@ fi
 echo "Setting up server..."
 mkdir -p $SERVER_DIR
 
-# Copy server files
-cp server/server.js $SERVER_DIR/
-cp server/package.json $SERVER_DIR/
+# Create server.js file
+cat > $SERVER_DIR/server.js <<EOF
+import express from 'express';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import cors from 'cors';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const app = express();
+const port = process.env.PORT || 5000;
+
+app.use(cors());
+app.use(express.static(join(__dirname, '../dist')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(join(__dirname, '../dist/index.html'));
+});
+
+app.listen(port, () => {
+  console.log(\`Server running on port \${port}\`);
+});
+EOF
 
 # Create server package.json
 cat > $SERVER_DIR/package.json <<EOF
@@ -142,7 +151,7 @@ echo "Setting up Nginx..."
 sudo apt-get install -y nginx
 
 # Create Nginx configuration
-cat > /etc/nginx/sites-available/kuisser <<EOF
+sudo tee /etc/nginx/sites-available/kuisser <<EOF
 server {
     listen 80;
     server_name _;

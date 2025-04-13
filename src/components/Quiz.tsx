@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@cloudscape-design/components';
 import { QuizQuestion } from '../types/quiz';
 import './Quiz.css';
@@ -12,7 +12,7 @@ interface QuestionAnswer {
   isCorrect: boolean;
 }
 
-const Quiz: React.FC<QuizProps> = ({ questions }) => {
+export default function Quiz({ questions }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: string[] }>({});
   const [submitted, setSubmitted] = useState<{ [key: number]: boolean }>({});
@@ -22,13 +22,13 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
   const [answeredQuestions, setAnsweredQuestions] = useState<Map<number, QuestionAnswer>>(new Map());
 
   const currentQuestion = questions[currentQuestionIndex];
-  const isSubmitted = submitted[currentQuestionIndex] || false;
+  const selectedAnswersForCurrentQuestion = selectedAnswers[currentQuestionIndex] || [];
+  const hasSubmitted = submitted[currentQuestionIndex] || false;
   const isExplanationVisible = showExplanation[currentQuestionIndex] || false;
   const isDisclaimerVisible = showDisclaimer[currentQuestionIndex] || false;
-  const currentSelectedAnswers = selectedAnswers[currentQuestionIndex] || [];
 
   const handleAnswerSelect = (answer: string) => {
-    if (isSubmitted) return;
+    if (hasSubmitted) return;
 
     setSelectedAnswers(prev => {
       const currentAnswers = prev[currentQuestionIndex] || [];
@@ -59,19 +59,19 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
   };
 
   const handleSubmit = () => {
-    if (currentSelectedAnswers.length === 0) return;
+    if (selectedAnswersForCurrentQuestion.length === 0) return;
     setSubmitted(prev => ({ ...prev, [currentQuestionIndex]: true }));
     setShowExplanation(prev => ({ ...prev, [currentQuestionIndex]: true }));
     const isCorrect = currentQuestion.isMultipleAnswer
-      ? currentSelectedAnswers.length === currentQuestion.answer.length &&
-        currentSelectedAnswers.every(a => currentQuestion.answer.includes(a))
-      : currentSelectedAnswers[0] === currentQuestion.answer[0];
+      ? selectedAnswersForCurrentQuestion.length === currentQuestion.answer.length &&
+        selectedAnswersForCurrentQuestion.every(a => currentQuestion.answer.includes(a))
+      : selectedAnswersForCurrentQuestion[0] === currentQuestion.answer[0];
 
     if (isCorrect) {
       setScore(score + 1);
     }
     setAnsweredQuestions(new Map(answeredQuestions).set(currentQuestionIndex, {
-      selectedAnswers: currentSelectedAnswers,
+      selectedAnswers: selectedAnswersForCurrentQuestion,
       isCorrect
     }));
   };
@@ -186,7 +186,7 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
           <Button 
             variant="primary" 
             onClick={handleSubmit} 
-            disabled={!currentSelectedAnswers.length || isSubmitted}
+            disabled={!selectedAnswersForCurrentQuestion.length || hasSubmitted}
           >
             Submit Answer
           </Button>
@@ -203,10 +203,10 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
           <div className="options-container">
             {currentQuestion.options.map((option) => {
               const isCorrect = currentQuestion.answer.includes(option.label);
-              const isSelected = currentSelectedAnswers.includes(option.label);
+              const isSelected = selectedAnswersForCurrentQuestion.includes(option.label);
 
               let optionClass = 'option';
-              if (isSubmitted) {
+              if (hasSubmitted) {
                 if (isCorrect) {
                   // Always show correct answers in green
                   optionClass += ' correct';
@@ -222,8 +222,8 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
                 optionClass += ' selected';
               }
 
-              const isDisabled = isSubmitted || 
-                (!isSelected && currentQuestion.isMultipleAnswer && currentSelectedAnswers.length >= 2);
+              const isDisabled = hasSubmitted || 
+                (!isSelected && currentQuestion.isMultipleAnswer && selectedAnswersForCurrentQuestion.length >= 2);
 
               return (
                 <div
@@ -243,7 +243,7 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
                   <label htmlFor={`option-${option.label}`}>
                     <span className="option-label">{option.label}.</span>
                     <span className="option-text">{option.text}</span>
-                    {isSubmitted && isCorrect && (
+                    {hasSubmitted && isCorrect && (
                       <span className="correct-indicator"> ✓</span>
                     )}
                   </label>
@@ -252,15 +252,15 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
             })}
           </div>
 
-          {isSubmitted && (
+          {hasSubmitted && (
             <div className="explanation">
               <h3>Explanation</h3>
               {currentQuestion.isMultipleAnswer && (
                 <div className="answer-summary">
                   <p>Correct answers: {currentQuestion.answer.sort().join(', ')}</p>
-                  <p>Your answers: {currentSelectedAnswers.sort().join(', ')}</p>
-                  <p>Score: {currentSelectedAnswers.length === currentQuestion.answer.length && 
-                           currentSelectedAnswers.every(a => currentQuestion.answer.includes(a)) ? '1' : '0'} point</p>
+                  <p>Your answers: {selectedAnswersForCurrentQuestion.sort().join(', ')}</p>
+                  <p>Score: {selectedAnswersForCurrentQuestion.length === currentQuestion.answer.length && 
+                           selectedAnswersForCurrentQuestion.every(a => currentQuestion.answer.includes(a)) ? '1' : '0'} point</p>
                 </div>
               )}
               {renderExplanation(currentQuestion.explanation)}
@@ -287,6 +287,4 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
       </div>
     </div>
   );
-};
-
-export default Quiz; 
+} 

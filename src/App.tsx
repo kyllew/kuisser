@@ -15,7 +15,7 @@ interface QuizFile {
 const ALL_DOMAINS_OPTION: QuizFile = {
   value: 'all',
   label: 'All Domains',
-  description: 'Show questions from all domains'
+  description: 'Questions from all domains'
 };
 
 const DOMAIN_FILES: QuizFile[] = [
@@ -46,12 +46,12 @@ const DOMAIN_FILES: QuizFile[] = [
   }
 ];
 
-const App: React.FC = () => {
+export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<QuizFile>(ALL_DOMAINS_OPTION);
+  const [selectedFile] = useState<QuizFile>(ALL_DOMAINS_OPTION);
   const [availableFiles, setAvailableFiles] = useState<QuizFile[]>([]);
 
   const handleLogin = (username: string, password: string) => {
@@ -60,9 +60,8 @@ const App: React.FC = () => {
     }
   };
 
-  const handleFileSelect = (option: QuizFile) => {
-    setLoading(true);
-    setError(null);
+  const handleFileSelect = () => {
+    // Implementation here if needed
   };
 
   // Load available quiz files
@@ -192,7 +191,7 @@ const App: React.FC = () => {
           <h1>AWS AI Quiz</h1>
           <Select
             selectedOption={selectedFile}
-            onChange={({ detail }) => handleFileSelect(detail.selectedOption as QuizFile)}
+            onChange={({ detail }) => handleFileSelect()}
             options={[ALL_DOMAINS_OPTION, ...DOMAIN_FILES]}
             selectedAriaLabel="Selected"
             placeholder="Choose a domain"
@@ -226,6 +225,4 @@ const App: React.FC = () => {
       </div>
     </Container>
   );
-};
-
-export default App; 
+} 
