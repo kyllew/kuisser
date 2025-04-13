@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, Alert, Select, FormField, Input, Button, NonCancelableCustomEvent } from '@cloudscape-design/components';
+import { Container, Alert, Select, FormField, Input, Button } from '@cloudscape-design/components';
 import Quiz from './components/Quiz';
 import { parseMarkdownQuiz } from './utils/markdownParser';
 import { QuizFile, Question } from './types/quiz';
