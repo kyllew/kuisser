@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Container, Alert, Select } from '@cloudscape-design/components';
+import { Container, Alert, Select, FormField, Input, Button, NonCancelableCustomEvent } from '@cloudscape-design/components';
 import Quiz from './components/Quiz';
 import { parseMarkdownQuiz } from './utils/markdownParser';
 import { QuizFile, Question } from './types/quiz';
+import './App.css';
 
 const ALL_DOMAINS_OPTION: QuizFile = {
   value: 'all',
@@ -13,33 +14,49 @@ const ALL_DOMAINS_OPTION: QuizFile = {
 const DOMAIN_FILES: QuizFile[] = [
   {
     value: 'Domain 1 Questions.md',
-    label: 'Domain 1',
-    description: 'Questions about Domain 1'
+    label: 'Domain 1: Fundamentals of AI and ML',
+    description: 'Core concepts of artificial intelligence and machine learning'
   },
   {
     value: 'Domain 2 Questions.md',
-    label: 'Domain 2',
-    description: 'Questions about Domain 2'
+    label: 'Domain 2: Fundamentals of Generative AI',
+    description: 'Foundation models, LLMs, and generative AI concepts'
   },
   {
     value: 'Domain 3 Questions.md',
-    label: 'Domain 3',
-    description: 'Questions about Domain 3'
+    label: 'Domain 3: Applications of Foundation Models',
+    description: 'Practical applications and implementations of foundation models'
   },
   {
     value: 'Domain 4 Questions.md',
-    label: 'Domain 4',
-    description: 'Questions about Domain 4'
+    label: 'Domain 4: Guidelines for Responsible AI',
+    description: 'Ethics, bias, transparency, and responsible AI practices'
+  },
+  {
+    value: 'Domain 5 Questions.md',
+    label: 'Domain 5: Security, Compliance, and Governance for AI Solutions',
+    description: 'Security best practices and compliance for AI solutions'
   }
 ];
 
 export default function App() {
-  const [selectedFile] = useState<QuizFile>(ALL_DOMAINS_OPTION);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [selectedFile, setSelectedFile] = useState<QuizFile>(ALL_DOMAINS_OPTION);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  const handleLogin = (username: string, password: string) => {
+    if (username === 'learner01' && password === '1willpass') {
+      setIsAuthenticated(true);
+    }
+  };
+
   // Load questions when a file is selected
   useEffect(() => {
+    if (!isAuthenticated) return;
+
     if (selectedFile.value === 'all') {
       // Load all questions from all files
       console.log('Loading all questions...');
@@ -81,20 +98,55 @@ export default function App() {
           setError('Failed to load questions: ' + err.message);
         });
     }
-  }, [selectedFile]);
+  }, [selectedFile, isAuthenticated]);
 
-  const handleFileSelect = () => {
-    // Implementation here if needed
+  const handleFileSelect = (event: any) => {
+    setSelectedFile(event.detail.selectedOption);
   };
+
+  if (!isAuthenticated) {
+    return (
+      <Container>
+        <h1>AI Quiz Demo</h1>
+        <div className="login-container">
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin(username, password);
+          }}>
+            <FormField label="Username">
+              <Input
+                name="username"
+                placeholder="Enter your username"
+                value={username}
+                onChange={({ detail }) => setUsername(detail.value)}
+              />
+            </FormField>
+            <FormField label="Password">
+              <Input
+                name="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={({ detail }) => setPassword(detail.value)}
+                type="password"
+              />
+            </FormField>
+            <div style={{ marginTop: '20px' }}>
+              <Button variant="primary">Login</Button>
+            </div>
+          </form>
+        </div>
+      </Container>
+    );
+  }
 
   return (
     <Container>
-      <h1>AWS Certified Machine Learning - Specialty Practice Questions</h1>
+      <h1>AI Quiz Demo</h1>
       
       <div className="file-selector">
         <Select
           selectedOption={selectedFile}
-          onChange={() => handleFileSelect()}
+          onChange={handleFileSelect}
           options={[ALL_DOMAINS_OPTION, ...DOMAIN_FILES]}
           selectedAriaLabel="Selected"
         />
