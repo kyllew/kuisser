@@ -19,7 +19,6 @@ export default function Quiz({ questions }: QuizProps) {
   const currentQuestion = questions[currentQuestionIndex];
   const selectedAnswersForCurrentQuestion = selectedAnswers[currentQuestionIndex] || [];
   const hasSubmitted = submitted[currentQuestionIndex] || false;
-  const isExplanationVisible = showExplanation[currentQuestionIndex] || false;
   const isDisclaimerVisible = showDisclaimer[currentQuestionIndex] || false;
 
   const handleAnswerSelect = (answer: string) => {
