@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Alert, Select, Box, Button, ContentLayout, Header, SelectProps } from '@cloudscape-design/components';
+import { useState, useEffect } from 'react';
+import { Container, Alert, Select } from '@cloudscape-design/components';
 import Quiz from './components/Quiz';
-import Login from './components/Login';
 import { parseMarkdownQuiz } from './utils/markdownParser';
-import { QuizQuestion } from './types/quiz';
-import '@cloudscape-design/global-styles/index.css';
-
-interface QuizFile {
-  value: string;
-  label: string;
-  description?: string;
-}
+import { QuizFile, Question } from './types/quiz';
 
 const ALL_DOMAINS_OPTION: QuizFile = {
   value: 'all',
@@ -20,90 +12,36 @@ const ALL_DOMAINS_OPTION: QuizFile = {
 
 const DOMAIN_FILES: QuizFile[] = [
   {
-    value: '/Domain 1 Questions.md',
+    value: 'Domain 1 Questions.md',
     label: 'Domain 1',
-    description: 'Design Resilient Architectures'
+    description: 'Questions about Domain 1'
   },
-  { 
-    label: 'Domain 2: Fundamentals of Generative AI', 
+  {
     value: 'Domain 2 Questions.md',
-    description: 'Foundation models, LLMs, and generative AI concepts'
+    label: 'Domain 2',
+    description: 'Questions about Domain 2'
   },
-  { 
-    label: 'Domain 3: Applications of Foundation Models', 
+  {
     value: 'Domain 3 Questions.md',
-    description: 'Practical applications and implementations of foundation models'
+    label: 'Domain 3',
+    description: 'Questions about Domain 3'
   },
-  { 
-    label: 'Domain 4: Guidelines for Responsible AI', 
+  {
     value: 'Domain 4 Questions.md',
-    description: 'Ethics, bias, transparency, and responsible AI practices'
-  },
-  { 
-    label: 'Domain 5: Security, Compliance, and Governance', 
-    value: 'Domain 5 Questions.md',
-    description: 'Security best practices and compliance for AI solutions'
+    label: 'Domain 4',
+    description: 'Questions about Domain 4'
   }
 ];
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [questions, setQuestions] = useState<QuizQuestion[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [selectedFile] = useState<QuizFile>(ALL_DOMAINS_OPTION);
-  const [availableFiles, setAvailableFiles] = useState<QuizFile[]>([]);
-
-  const handleLogin = (username: string, password: string) => {
-    if (username === 'learner01' && password === '1willpass') {
-      setIsAuthenticated(true);
-    }
-  };
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const handleFileSelect = () => {
     // Implementation here if needed
   };
-
-  // Load available quiz files
-  useEffect(() => {
-    if (!isAuthenticated) return;
-
-    setLoading(true);
-    console.log('Fetching quiz files...');
-    
-    fetch('/api/quiz-files')
-      .then(async response => {
-        const text = await response.text();
-        console.log('Raw API response:', text);
-        
-        if (!response.ok) {
-          throw new Error(`Failed to fetch quiz files: ${response.status} ${response.statusText}`);
-        }
-        
-        try {
-          return JSON.parse(text);
-        } catch (error) {
-          if (error instanceof Error) {
-            throw new Error(`Invalid JSON response: ${error.message}`);
-          }
-          throw new Error('Invalid JSON response');
-        }
-      })
-      .then(files => {
-        console.log('Received quiz files:', files);
-        if (!Array.isArray(files)) {
-          throw new Error('Expected array of files but got: ' + typeof files);
-        }
-        
-        setAvailableFiles(files);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error loading quiz files:', err);
-        setError('Failed to load quiz files: ' + err.message);
-        setLoading(false);
-      });
-  }, [isAuthenticated]);
 
   // Load questions when a file is selected
   useEffect(() => {
@@ -112,11 +50,11 @@ export default function App() {
     if (selectedFile.value === 'all') {
       // Load all questions from all files
       console.log('Loading all questions...');
-      setLoading(true);
+      setIsLoading(true);
       setError(null);
 
       const loadQuestions = async () => {
-        setLoading(true);
+        setIsLoading(true);
         setError(null);
         try {
           const files = [
@@ -153,7 +91,7 @@ export default function App() {
           console.error('Error loading questions:', error);
           setError(error instanceof Error ? error.message : 'Failed to load questions');
         } finally {
-          setLoading(false);
+          setIsLoading(false);
         }
       };
 
@@ -161,7 +99,7 @@ export default function App() {
     } else {
       // Load questions from the selected file
       console.log('Loading questions from:', selectedFile.value);
-      setLoading(true);
+      setIsLoading(true);
       setError(null);
 
       fetch(`/${selectedFile.value}`)
@@ -170,15 +108,15 @@ export default function App() {
           const questions = parseMarkdownQuiz(markdown);
           console.log('Questions loaded:', questions.length);
           setQuestions(questions);
-          setLoading(false);
+          setIsLoading(false);
         })
         .catch(err => {
           console.error('Error loading questions:', err);
           setError('Failed to load questions: ' + err.message);
-          setLoading(false);
+          setIsLoading(false);
         });
     }
-  }, [selectedFile, availableFiles, isAuthenticated]);
+  }, [selectedFile, isAuthenticated]);
 
   if (!isAuthenticated) {
     return <Login onLogin={handleLogin} />;

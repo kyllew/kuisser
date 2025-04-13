@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@cloudscape-design/components';
-import { QuizQuestion } from '../types/quiz';
 import './Quiz.css';
+import { Question } from '../types/quiz';
 
 interface QuizProps {
-  questions: QuizQuestion[];
-}
-
-interface QuestionAnswer {
-  selectedAnswers: string[];
-  isCorrect: boolean;
+  questions: Question[];
 }
 
 export default function Quiz({ questions }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: string[] }>({});
-  const [submitted, setSubmitted] = useState<{ [key: number]: boolean }>({});
   const [showExplanation, setShowExplanation] = useState<{ [key: number]: boolean }>({});
-  const [showDisclaimer, setShowDisclaimer] = useState<{ [key: number]: boolean }>({});
+  const [submitted, setSubmitted] = useState<{ [key: number]: boolean }>({});
   const [score, setScore] = useState(0);
-  const [answeredQuestions, setAnsweredQuestions] = useState<Map<number, QuestionAnswer>>(new Map());
+  const [answeredQuestions, setAnsweredQuestions] = useState<Map<number, { selectedAnswers: string[]; isCorrect: boolean }>>(new Map());
+  const [showDisclaimer, setShowDisclaimer] = useState<{ [key: number]: boolean }>({});
 
   const currentQuestion = questions[currentQuestionIndex];
   const selectedAnswersForCurrentQuestion = selectedAnswers[currentQuestionIndex] || [];

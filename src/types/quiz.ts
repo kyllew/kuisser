@@ -1,3 +1,25 @@
+export interface QuizFile {
+  value: string;
+  label: string;
+  description?: string;
+}
+
+export interface Question {
+  question: string;
+  options: {
+    label: string;
+    text: string;
+  }[];
+  answer: string[];
+  explanation: string;
+  isMultipleAnswer: boolean;
+}
+
+export interface QuestionAnswer {
+  selectedAnswers: string[];
+  isCorrect: boolean;
+}
+
 export interface QuizQuestion {
   question: string;
   options: {
