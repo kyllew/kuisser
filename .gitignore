@@ -38,4 +38,8 @@ yarn-error.log*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db 
+Thumbs.db
+
+# Large files for S3 upload
+*.zip
+_bak/ 
