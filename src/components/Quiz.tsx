@@ -1,19 +1,55 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@cloudscape-design/components';
 import './Quiz.css';
 import { Question } from '../types/quiz';
 
 interface QuizProps {
   questions: Question[];
+  sessionId: string;
 }
 
-export default function Quiz({ questions }: QuizProps) {
+export default function Quiz({ questions, sessionId }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: string[] }>({});
   const [submitted, setSubmitted] = useState<{ [key: number]: boolean }>({});
   const [score, setScore] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState<Map<number, { selectedAnswers: string[]; isCorrect: boolean }>>(new Map());
   const [showDisclaimer, setShowDisclaimer] = useState<{ [key: number]: boolean }>({});
+
+  // Load saved state for this session
+  useEffect(() => {
+    const savedState = localStorage.getItem(`quiz-state-${sessionId}`);
+    if (savedState) {
+      const { 
+        currentIndex, 
+        answers, 
+        submittedAnswers, 
+        currentScore, 
+        answeredQs,
+        disclaimer
+      } = JSON.parse(savedState);
+      
+      setCurrentQuestionIndex(currentIndex);
+      setSelectedAnswers(answers);
+      setSubmitted(submittedAnswers);
+      setScore(currentScore);
+      setAnsweredQuestions(new Map(Object.entries(answeredQs).map(([k, v]) => [Number(k), v as { selectedAnswers: string[]; isCorrect: boolean }])));
+      setShowDisclaimer(disclaimer);
+    }
+  }, [sessionId]);
+
+  // Save state whenever it changes
+  useEffect(() => {
+    const stateToSave = {
+      currentIndex: currentQuestionIndex,
+      answers: selectedAnswers,
+      submittedAnswers: submitted,
+      currentScore: score,
+      answeredQs: Object.fromEntries(answeredQuestions),
+      disclaimer: showDisclaimer
+    };
+    localStorage.setItem(`quiz-state-${sessionId}`, JSON.stringify(stateToSave));
+  }, [currentQuestionIndex, selectedAnswers, submitted, score, answeredQuestions, showDisclaimer, sessionId]);
 
   const currentQuestion = questions[currentQuestionIndex];
   const selectedAnswersForCurrentQuestion = selectedAnswers[currentQuestionIndex] || [];

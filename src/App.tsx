@@ -46,10 +46,21 @@ export default function App() {
   const [selectedFile, setSelectedFile] = useState<QuizFile>(ALL_DOMAINS_OPTION);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [sessionId, setSessionId] = useState<string>('');
 
   const handleLogin = (username: string, password: string) => {
-    if (username === 'learner01' && password === '1willpass') {
-      setIsAuthenticated(true);
+    // Check if username matches pattern learnerXX where XX is 01-30
+    const learnerMatch = username.match(/^learner(\d{2})$/);
+    if (learnerMatch) {
+      const learnerNumber = parseInt(learnerMatch[1]);
+      // Check if learner number is between 01-30 and password matches pattern
+      if (learnerNumber >= 1 && learnerNumber <= 30 && password === `${learnerNumber}willpass`) {
+        // Generate a unique session ID for this login
+        const newSessionId = `${username}-${Date.now()}`;
+        setSessionId(newSessionId);
+        setIsAuthenticated(true);
+        return;
+      }
     }
   };
 
@@ -162,7 +173,10 @@ export default function App() {
       )}
 
       {questions.length > 0 && (
-        <Quiz questions={questions} />
+        <Quiz 
+          questions={questions} 
+          sessionId={sessionId}
+        />
       )}
     </Container>
   );
