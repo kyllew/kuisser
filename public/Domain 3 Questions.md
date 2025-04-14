@@ -563,4 +563,111 @@ Correct Answer:
 	Resource URL:
 	https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-prompt-engineering.html
 
+Q133
+A company wants to enhance response quality for a large language model (LLM) for complex problem-solving tasks. The tasks require detailed reasoning and a step-by-step explanation process.  
+Which prompt engineering technique meets these requirements?
+Options:
+A. Few-shot prompting
+B. Zero-shot prompting
+C. Directional stimulus prompting
+D. Chain-of-thought prompting
+
+Correct Answer: 
+	D. Chain-of-thought prompting
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.2: "Choose effective prompt engineering techniques." ---
+	Explanation: 
+	Answer D is correct because:
+	- Chain-of-thought prompting encourages the model to break down complex problems into steps
+	- It improves reasoning quality by making the thought process explicit
+	- Perfect for complex problem-solving tasks requiring detailed explanations
+	- Helps in understanding and verifying the model's reasoning process
+	- Enhances response quality through structured thinking
+	The other answers are not suitable because:
+	A. Few-shot prompting - While useful for learning from examples, doesn't specifically address step-by-step reasoning
+	B. Zero-shot prompting - Doesn't provide structure for complex reasoning tasks
+	C. Directional stimulus prompting - Not a standard prompt engineering technique for complex reasoning
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering.html
+
+Q134
+A company wants to keep its foundation model (FM) relevant by using the most recent data. The company wants to implement a model training strategy that includes regular updates to the FM.  
+Which solution meets these requirements?
+Options:
+A. Batch learning
+B. Continuous pre-training
+C. Static training
+D. Latent training
+
+
+Correct Answer: 
+	B. Continuous pre-training
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.3: "Describe the training and fine-tuning process for foundation models." ---
+	Explanation: 
+		Answer B is correct because:
+		- Continuous pre-training allows regular updates to the model with new data
+		- It helps maintain model relevance by incorporating recent information
+		- Enables ongoing model improvement without complete retraining
+		- Supports incremental learning from new data
+		- Perfect for keeping foundation models up-to-date
+		The other answers are not suitable because:
+		A. Batch learning - One-time training with a fixed dataset, doesn't support regular updates
+		C. Static training - Implies fixed, unchanging training, opposite of what's needed
+		D. Latent training - Not a real training strategy for foundation models
+		Resource URL:
+		https://aws.amazon.com/about-aws/whats-new/2023/11/continued-pre-training-amazon-bedrock-preview/
+		https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-prepare.html
+
+Q139
+A company’s large language model (LLM) is experiencing hallucinations.  
+How can the company decrease hallucinations?
+Options:
+A. Set up Agents for Amazon Bedrock to supervise the model training.
+B. Use data pre-processing and remove any data that causes hallucinations.
+C. Decrease the temperature inference parameter for the model.
+D. Use a foundation model (FM) that is trained to not hallucinate.
+
+Correct Answer: 
+	C. Decrease the temperature inference parameter for the model
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.1: "Describe design considerations for applications that use foundation models" ---
+	Explanation: 
+	Answer C is correct because:
+	- Temperature is a key parameter that controls the randomness in model outputs
+	- Lower temperature makes the model's outputs more deterministic and focused
+	- Reducing temperature helps the model stick to more probable/factual responses
+	- This approach directly addresses hallucination by making responses more conservative
+	- It's a practical and immediate solution for reducing hallucinations
+	The other answers are not suitable because:
+	A. Agents for Amazon Bedrock - Agents are for task orchestration, not for controlling hallucinations
+	B. Remove data causing hallucinations - Hallucinations aren't caused by specific data points that can be removed
+	D. Using a non-hallucinating FM - No foundation model is completely immune to hallucinations
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html
+
+Q140
+A company is using a large language model (LLM) on Amazon Bedrock to build a chatbot. The chatbot processes customer support requests. To resolve a request, the customer and the chatbot must interact a few times.  
+Which solution gives the LLM the ability to use content from previous customer messages?
+Options:
+A. Turn on model invocation logging to collect messages.
+B. Add messages to the model prompt.
+C. Use Amazon Personalize to save conversation history.
+D. Use Provisioned Throughput for the LLM.
+
+Correct Answer: 
+	B. Add messages to the model prompt
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.2: "Choose effective prompt engineering techniques." ---
+	Explanation: 
+	Answer B is correct because:
+	- Including previous messages in the prompt provides conversation context
+	- This technique allows the LLM to maintain conversation coherence
+	- It enables the model to reference earlier parts of the conversation
+	- This is a standard prompt engineering technique for maintaining conversation history
+	- Helps create more contextually appropriate responses
+	The other answers are not suitable because:
+	A. Model invocation logging - This is for monitoring, not for maintaining conversation context
+	C. Amazon Personalize - This is for recommendations, not for conversation management
+	D. Provisioned Throughput - This relates to performance capacity, not conversation context
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html
+	https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-create.html
+
 

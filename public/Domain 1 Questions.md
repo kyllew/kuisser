@@ -690,3 +690,97 @@ Correct Answer:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-cloudwatch.html
 
 
+Q132
+A company is building a mobile app for users who have a visual impairment. The app must be able to hear what users say and provide voice responses.  
+Which solution will meet these requirements?
+Options:
+A. Use a deep learning neural network to perform speech recognition.
+B. Build ML models to search for patterns in numeric data.
+C. Use generative AI summarization to generate human-like text.
+D. Build custom models for image classification and recognition.
+
+Correct Answer: 
+	A. Use a deep learning neural network to perform speech recognition
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.2: "Identify practical use cases for AI." ---
+	Explanation: 
+		Answer A is correct because:
+		- Speech recognition using deep learning is ideal for processing user voice input
+		- Deep learning neural networks can handle both speech-to-text and text-to-speech conversion
+		- This solution addresses both requirements: hearing users and providing voice responses
+		- It's particularly suitable for accessibility applications
+		- Neural networks are proven effective for speech processing tasks
+		The other answers are not suitable because:
+		B. ML models for numeric data - Not relevant for speech processing requirements
+		C. Generative AI summarization - While it generates text, it doesn't address speech processing needs
+		D. Image classification models - Not relevant for speech-based interaction requirements
+	Resource URL:
+	https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html
+	https://docs.aws.amazon.com/polly/latest/dg/what-is.html
+
+Q135
+A company wants to develop ML applications to improve business operations and efficiency.  
+Select the correct ML paradigm (supervised or unsupervised) from the following list for each use case. Hotspot Use case :
+1) Binary classification
+2) Multi-class classification
+3) K-means clustering
+4) Dimensionality reduction
+
+Options:
+A. 1 Supervised 2. Supervised 3. Unsupervised 4. Unsupervised
+B. 1 Unsupervised 2. Supervised 3. Unsupervised 4. Unsupervised
+C. 1 Unsupervised 2. Unsupervised 3. Supervised 4. Supervised
+D. 1 Supervised 2. Supervised 3. Unsupervised 4. Supervised
+
+
+Correct Answer: 
+	A. 1. Supervised 2. Supervised 3. Unsupervised 4. Unsupervised
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.1: "Explain basic AI concepts and terminologies." ---
+	Explanation: 
+		Answer A is correct because:
+		1. Binary Classification (Supervised):
+		- Has labeled data with two classes
+		- Requires known outcomes for training
+		- Examples: spam/not spam, fraud/not fraud
+		2. Multi-class Classification (Supervised):
+		- Has labeled data with multiple classes
+		- Requires known outcomes for training
+		- Examples: image classification, sentiment analysis
+		3. K-means Clustering (Unsupervised):
+		- No labeled data needed
+		- Finds natural groupings in data
+		- Groups similar data points together
+		4. Dimensionality Reduction (Unsupervised):
+		- No labeled data needed
+		- Reduces number of features while preserving information
+		- Examples: PCA, t-SNE
+		The other answers are not suitable because they incorrectly classify one or more ML paradigms.
+	Resource URL:
+	https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/
+
+
+
+Q138
+A company wants to find groups for its customers based on the customers’ demographics and buying patterns.  
+Which algorithm should the company use to meet this requirement?
+Options :
+A. K-nearest neighbors (k-NN)
+B. K-means
+C. Decision tree
+D. Support vector machine
+
+Correct Answer: 
+	B. K-means
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.1: "Explain basic AI concepts and terminologies." ---	
+	Explanation: 
+		Answer B is correct because:
+		- K-means is specifically designed for clustering/grouping similar data points
+		- It can identify natural groupings in customer data based on multiple features
+		- Perfect for customer segmentation based on demographics and behavior
+		- Unsupervised learning approach that doesn't require labeled data
+		- Effectively handles numerical features like demographics and purchase patterns
+		The other answers are not suitable because:
+		A. K-nearest neighbors (k-NN) - This is a supervised learning algorithm for classification, not for finding groups
+		C. Decision tree - This is a supervised learning algorithm for classification and regression
+		D. Support vector machine - This is a supervised learning algorithm for classification, not suitable for finding natural groups
+	Resource URL:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/k-means.html

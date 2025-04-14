@@ -285,3 +285,35 @@ Correct Answer:
 	D. Data enrichment - Relates to improving data value, not compliance or privacy protection
 	Resource URL:
 	https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-aws-semicon-workloads/meeting-data-residency-requirements.html
+
+
+Q136
+Which option is a characteristic of AI governance frameworks for building trust and deploying human-centered AI technologies?
+Options :
+A. Expanding initiatives across business units to create long-term business value
+B. Ensuring alignment with business standards, revenue goals, and stakeholder expectations
+C. Overcoming challenges to drive business transformation and growth
+D. Developing policies and guidelines for data, transparency, responsible AI, and compliance
+
+Correct Answer: 
+	D. Developing policies and guidelines for data, transparency, responsible AI, and compliance
+	--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.2: "Recognize governance and compliance regulations for AI systems." ---
+	Explanation: 
+		Answer D is correct because:
+		- It focuses on the key components of AI governance frameworks:
+		  * Data governance
+		  * Transparency requirements
+		  * Responsible AI principles
+		  * Compliance standards
+		- These elements are essential for building trust in AI systems
+		- It addresses the human-centered aspect through responsible AI practices
+		- It emphasizes the governance and compliance aspects needed for trustworthy AI
+		The other answers are not suitable because:
+		A. Expanding initiatives - Focuses on business expansion rather than governance
+		B. Business alignment - Emphasizes business goals rather than governance and trust
+		C. Business transformation - Addresses business growth rather than governance frameworks
+	Resource URL:
+	https://docs.aws.amazon.com/whitepapers/latest/aws-caf-for-ai/governance-perspective-managing-an-aiml-driven-organization.html
+
+
+

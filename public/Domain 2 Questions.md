@@ -435,3 +435,54 @@ Correct Answer:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html
 	https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html
 
+Q131
+Which AWS service makes foundation models (FMs) available to help users build and scale generative AI applications?
+Options:
+A. Amazon Q Developer
+B. Amazon Bedrock
+C. Amazon Kendra
+D. Amazon Comprehend
+
+Correct Answer: 
+	B. Amazon Bedrock
+	--- Domain 2: Fundamentals of Generative AI, Task Statement 2.3: "Describe AWS infrastructure and technologies for building generative AI applications." ---
+	Explanation: 
+	Answer B is correct because:
+	- Amazon Bedrock is specifically designed to provide access to foundation models
+	- It offers a variety of pre-trained foundation models from Amazon and third-party providers
+	- Provides a unified API for accessing different foundation models
+	- Enables building and scaling generative AI applications
+	- Offers serverless infrastructure for deploying generative AI solutions
+	The other answers are not suitable because:
+	A. Amazon Q Developer - This is an AI-powered assistant for developers, not a platform for accessing foundation models
+	C. Amazon Kendra - This is an enterprise search service, not for accessing foundation models
+	D. Amazon Comprehend - This is for natural language processing tasks, not for accessing foundation models
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html
+
+Q137
+An ecommerce retail company is using a generative AI chatbot to respond to customer inquiries. The company wants to measure the financial effect of the chatbot on the company’s operations. 
+Which metric should the company use?
+Options:
+A. Number of customer inquiries handled
+B. Cost of training AI models
+C. Cost for each customer conversation
+D. Average handled time (AHT)
+
+Correct Answer: 
+	C. Cost for each customer conversation
+	--- Domain 2: Fundamentals of Generative AI, Task Statement 2.2: "Understand the capabilities and limitations of generative AI for solving business problems." ---
+	Explanation: 
+	Answer C is correct because:
+	- Cost per conversation directly measures the financial impact of the chatbot
+	- It allows comparison with human agent costs
+	- Helps determine ROI of the generative AI implementation
+	- Provides clear financial metrics for operational impact
+	- Enables business value assessment of the AI solution
+	The other answers are not suitable because:
+	A. Number of inquiries handled - Volume metric but doesn't show financial impact
+	B. Cost of training AI models - One-time cost, doesn't reflect ongoing operational impact
+	D. Average handled time - Efficiency metric but doesn't directly show financial impact
+	Resource URL:
+	https://aws.amazon.com/bedrock/pricing/
+

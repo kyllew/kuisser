@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.787.0",
     "@cloudscape-design/components": "^3.0.943",
     "@cloudscape-design/global-styles": "^1.0.40",
     "@emotion/react": "^11.11.4",
