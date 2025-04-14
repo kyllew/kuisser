@@ -41,4 +41,38 @@ button[type="submit"]:hover {
 
 .file-selector {
   margin: 2rem 0;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+}
+
+.user-info span {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.user-info button {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  min-width: auto;
+  width: auto;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+}
+
+.user-info button:hover {
+  background-color: #e5e7eb;
+  border-color: #9ca3af;
 } 

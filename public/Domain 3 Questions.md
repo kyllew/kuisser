@@ -671,3 +671,93 @@ Correct Answer:
 	https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-create.html
 
 
+Q143
+A company is training its employees on how to structure prompts for foundation models.  
+Hotspot
+Select the correct prompt engineering technique from the following list for each prompt template. Each prompt engineering technique should be selected one time.
+Prompt 1 : "Classify the following text as either sports, politics, or entertainment : [input text]."
+Prompt 2 : "A [image 1], [image 2], and [image 3] are examples of [target class]. Classify the following image as [target class]"
+Prompt 3 : "[Question.]   [Instructions to follow.]. Think step by step and walk me through your thinking process"
+
+Options:
+A. Prompt 1 : Zero-shot learning, Prompt 2 : Chain-of-thought reasoning, Prompt 3 : Few-shot learning.
+B. Prompt 1 : Zero-shot learning, Prompt 2 : Few-shot learning, Prompt 3 : Chain-of-thought reasoning.
+C. Prompt 1 : Few-shot learning, Prompt 2 : Zero-shot learning, Prompt 3 : Chain-of-thought reasoning.
+D. Prompt 1 : Few-shot learning, Prompt 2 : Chain-of-thought reasoning, Prompt 3 : Zero-shot learning.
+
+Correct Answer: 
+	B. Prompt 1: Zero-shot learning, Prompt 2: Few-shot learning, Prompt 3: Chain-of-thought reasoning
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.2: "Choose effective prompt engineering techniques." ---
+	Explanation: 
+	Answer B is correct because:
+	Prompt 1 (Zero-shot learning):
+	- Directly asks for classification without examples
+	- No prior examples or demonstrations provided
+	- Model must perform task based on instructions alone
+	Prompt 2 (Few-shot learning):
+	- Provides examples ([image 1], [image 2], [image 3])
+	- Shows model examples before asking for classification
+	- Uses demonstration to guide the model's response
+	Prompt 3 (Chain-of-thought reasoning):
+	- Explicitly asks for step-by-step thinking
+	- Requires showing the reasoning process
+	- Focuses on explaining the thought process
+	The other answers are not suitable because they incorrectly match the prompting techniques with their corresponding examples.
+	Resource URL:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-customize-prompt-engineering.html
+
+
+Q146
+What does an F1 score measure in the context of foundation model (FM) performance?
+Options:
+A. Model precision and recall
+B. Model speed in generating responses
+C. Financial cost of operating the model
+D. Energy efficiency of the model’s computations
+
+Correct Answer: 
+	A. Model precision and recall
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.4: "Describe methods to evaluate foundation model performance." ---
+	Explanation: 
+	Answer A is correct because:
+	- F1 score is a harmonic mean of precision and recall
+	- It combines both precision (accuracy of positive predictions) and recall (ability to find all positive cases)
+	- Provides a balanced measure of model performance
+	- Particularly useful when dataset classes are imbalanced
+	- Common metric for evaluating foundation model performance
+	The other answers are not suitable because:
+	B. Model speed - This is a computational metric, not what F1 score measures
+	C. Financial cost - This is an operational metric, not related to F1 score
+	D. Energy efficiency - This is a resource utilization metric, not what F1 score measures
+	Resource URL:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-evaluation-metrics.html
+
+
+Q150
+A company wants to improve the accuracy of the responses from a generative AI application. The application uses a foundation model (FM) on Amazon Bedrock.  
+Which solution meets these requirements MOST cost-effectively?
+Options:
+A. Fine-tune the FM.
+B. Retrain the FM.
+C. Train a new FM.
+D. Use prompt engineering.
+
+Correct Answer: 
+	D. Use prompt engineering
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.2: "Choose effective prompt engineering techniques." ---
+	Explanation: 
+	Answer D is correct because:
+	- Prompt engineering is the most cost-effective way to improve model responses
+	- Requires no model training or modification
+	- Can be implemented immediately without additional infrastructure
+	- Allows for iterative improvements without significant costs
+	- Most efficient way to optimize model output
+	The other answers are not suitable because:
+	A. Fine-tune the FM - More expensive and resource-intensive than prompt engineering
+	B. Retrain the FM - Very expensive and time-consuming
+	C. Train a new FM - Most expensive and resource-intensive option
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html
+
+
+

@@ -315,5 +315,66 @@ Correct Answer:
 	Resource URL:
 	https://docs.aws.amazon.com/whitepapers/latest/aws-caf-for-ai/governance-perspective-managing-an-aiml-driven-organization.html
 
+Q142
+A company wants to upload customer service email messages to Amazon S3 to develop a business analysis application. The messages sometimes contain sensitive data. The company wants to receive an alert every time sensitive information is found.  
+Which solution fully automates the sensitive information detection process with the LEAST development effort?
+Options :
+A. Configure Amazon Macie to detect sensitive information in the documents that are uploaded to Amazon S3.
+B. Use Amazon SageMaker endpoints to deploy a large language model (LLM) to redact sensitive data.
+C. Develop multiple regex patterns to detect sensitive data. Expose the regex patterns on an Amazon SageMaker notebook.
+D. Ask the customers to avoid sharing sensitive information in their email messages.
 
+Correct Answer: 
+	A. Configure Amazon Macie to detect sensitive information in the documents that are uploaded to Amazon S3
+	--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.1: "Explain methods to secure AI systems." ---
+	Explanation: 
+	Answer A is correct because:
+	- Amazon Macie is specifically designed for automated sensitive data detection
+	- Requires minimal development effort (fully managed service)
+	- Automatically integrates with S3 for document scanning
+	- Provides built-in alerting capabilities
+	- Includes pre-built detectors for various types of sensitive data
+	The other answers are not suitable because:
+	B. SageMaker LLM deployment - Requires significant development effort and custom model implementation
+	C. Regex patterns - Requires manual development and maintenance of patterns
+	D. Asking customers - Not an automated solution and unreliable for security
+	Resource URL:
+	https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html
+
+
+Q149
+A global financial company has developed an ML application to analyze stock market data and provide stock market trends. The company wants to continuously monitor the application development phases and to ensure that company policies and industry regulations are followed.
+Which AWS services will help the company assess compliance requirements? (Choose two.)
+Options :
+A. AWS Audit Manager
+B. AWS Config
+C. Amazon Inspector
+D. Amazon CloudWatch
+E. AWS CloudTrail
+
+ Let me help classify and explain this question:
+
+Correct Answer: 
+	A. AWS Audit Manager
+	E. AWS CloudTrail
+	--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.2: "Recognize governance and compliance regulations for AI systems." ---
+	Explanation: 
+	Answer A (AWS Audit Manager) is correct because:
+	- Specifically designed for continuous auditing and compliance monitoring
+	- Helps assess compliance with industry regulations
+	- Provides frameworks for financial services compliance
+	- Enables continuous monitoring of compliance controls
+	Answer E (AWS CloudTrail) is correct because:
+	- Provides audit logs of all API activities
+	- Enables compliance monitoring through activity tracking
+	- Essential for regulatory compliance in financial services
+	- Helps track changes and access to ML applications
+	The other answers are not suitable because:
+	B. AWS Config - More focused on resource configuration tracking than compliance assessment
+	C. Amazon Inspector - Focused on security vulnerability assessment, not compliance monitoring
+	D. Amazon CloudWatch - For performance monitoring, not compliance assessment
+	Resource URL:
+	https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html
+	https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
+	
 

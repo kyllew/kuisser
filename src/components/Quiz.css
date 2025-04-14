@@ -304,4 +304,13 @@
 
 .resource-urls a:visited {
   color: #7c3aed;
+}
+
+.learner-id {
+  font-weight: bold;
+  color: #1d4ed8;
+  padding: 0.5rem;
+  background-color: #eff6ff;
+  border-radius: 4px;
+  margin-right: 1rem;
 } 

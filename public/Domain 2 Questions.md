@@ -486,3 +486,57 @@ Correct Answer:
 	Resource URL:
 	https://aws.amazon.com/bedrock/pricing/
 
+Q141
+A company’s staffs assist the customer by giving product descriptions and recommendations when customers call the customer service center. These recommendations are given based on where the customers are located. The company wants to use foundation models (FMs) to automate this process.  
+Which AWS service meets these requirements?
+Options:
+A. Amazon Macie
+B. Amazon Transcribe
+C. Amazon Bedrock
+D. Amazon Textract
+
+Let me help classify and explain this question:
+
+Correct Answer: 
+	C. Amazon Bedrock
+	--- Domain 2: Fundamentals of Generative AI, Task Statement 2.3: "Describe AWS infrastructure and technologies for building generative AI applications." ---
+	Explanation: 
+		Answer C is correct because:
+		- Amazon Bedrock provides access to foundation models for generating text
+		- It can handle context-aware content generation (location-based recommendations)
+		- Suitable for automating customer service tasks
+		- Can generate personalized product descriptions and recommendations
+		- Offers various foundation models optimized for different use cases
+		The other answers are not suitable because:
+		A. Amazon Macie - This is for discovering and protecting sensitive data, not for generating recommendations
+		B. Amazon Transcribe - This converts speech to text, not for generating recommendations
+		D. Amazon Textract - This extracts text from documents, not for generating recommendations
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html
+
+
+Q147
+A company deployed an AI/ML solution to help customer service agents respond to frequently asked questions. The questions can change over time. The company wants to give customer service agents the ability to ask questions and receive automatically generated answers to common customer questions.  
+Which strategy will meet these requirements MOST cost-effectively?
+Options:
+A. Fine-tune the model regularly.
+B. Train the model by using context data.
+C. Pre-train and benchmark the model by using context data.
+D. Use Retrieval Augmented Generation (RAG) with prompt engineering techniques.
+
+Correct Answer: 
+	D. Use Retrieval Augmented Generation (RAG) with prompt engineering techniques
+	--- Domain 2: Fundamentals of Generative AI, Task Statement 2.2: "Understand the capabilities and limitations of generative AI for solving business problems." ---
+	Explanation: 
+	Answer D is correct because:
+	- RAG allows dynamic incorporation of new information without model retraining
+	- It's cost-effective as it doesn't require frequent model updates
+	- Combines existing model knowledge with up-to-date context
+	- Uses prompt engineering to improve response quality
+	- Perfect for handling changing FAQ content
+	The other answers are not suitable because:
+	A. Fine-tune regularly - More expensive and time-consuming than RAG
+	B. Train with context data - Requires complete retraining, not cost-effective
+	C. Pre-train and benchmark - Resource-intensive and doesn't handle dynamic updates well
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html

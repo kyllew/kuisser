@@ -40,13 +40,22 @@ const DOMAIN_FILES: QuizFile[] = [
 ];
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const savedAuth = localStorage.getItem('auth-state');
+    return savedAuth ? JSON.parse(savedAuth).isAuthenticated : false;
+  });
+  const [username, setUsername] = useState(() => {
+    const savedAuth = localStorage.getItem('auth-state');
+    return savedAuth ? JSON.parse(savedAuth).username : '';
+  });
   const [password, setPassword] = useState('');
   const [selectedFile, setSelectedFile] = useState<QuizFile>(ALL_DOMAINS_OPTION);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [sessionId, setSessionId] = useState<string>('');
+  const [sessionId, setSessionId] = useState(() => {
+    const savedAuth = localStorage.getItem('auth-state');
+    return savedAuth ? JSON.parse(savedAuth).sessionId : '';
+  });
 
   const handleLogin = (username: string, password: string) => {
     // Check if username matches pattern learnerXX where XX is 01-30
@@ -55,13 +64,32 @@ export default function App() {
       const learnerNumber = parseInt(learnerMatch[1]);
       // Check if learner number is between 01-30 and password matches pattern
       if (learnerNumber >= 1 && learnerNumber <= 30 && password === `${learnerNumber}willpass`) {
-        // Generate a unique session ID for this login
-        const newSessionId = `${username}-${Date.now()}`;
+        // Use a consistent sessionId based on username only
+        const newSessionId = `learner-${learnerNumber}`;
         setSessionId(newSessionId);
         setIsAuthenticated(true);
+        setUsername(username);
+        // Save auth state to localStorage
+        localStorage.setItem('auth-state', JSON.stringify({
+          isAuthenticated: true,
+          username,
+          sessionId: newSessionId
+        }));
         return;
       }
     }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUsername('');
+    setPassword('');
+    // Don't clear sessionId or quiz state
+    localStorage.setItem('auth-state', JSON.stringify({
+      isAuthenticated: false,
+      username: '',
+      sessionId: sessionId // Keep the sessionId
+    }));
   };
 
   // Load questions when a file is selected
@@ -154,6 +182,19 @@ export default function App() {
     <Container>
       <h1>AI Quiz Demo</h1>
       
+      {isAuthenticated && (
+        <div className="user-info">
+          <span>Logged in as: {username}</span>
+          <Button 
+            variant="normal" 
+            onClick={handleLogout}
+            iconName="external"
+          >
+            Logout
+          </Button>
+        </div>
+      )}
+
       <div className="file-selector">
         <Select
           selectedOption={selectedFile}

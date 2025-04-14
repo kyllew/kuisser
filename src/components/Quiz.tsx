@@ -18,28 +18,58 @@ export default function Quiz({ questions, sessionId }: QuizProps) {
 
   // Load saved state for this session
   useEffect(() => {
+    console.log('Loading state for session:', sessionId);
     const savedState = localStorage.getItem(`quiz-state-${sessionId}`);
+    console.log('Raw saved state:', savedState);
+    
     if (savedState) {
-      const { 
-        currentIndex, 
-        answers, 
-        submittedAnswers, 
-        currentScore, 
-        answeredQs,
-        disclaimer
-      } = JSON.parse(savedState);
-      
-      setCurrentQuestionIndex(currentIndex);
-      setSelectedAnswers(answers);
-      setSubmitted(submittedAnswers);
-      setScore(currentScore);
-      setAnsweredQuestions(new Map(Object.entries(answeredQs).map(([k, v]) => [Number(k), v as { selectedAnswers: string[]; isCorrect: boolean }])));
-      setShowDisclaimer(disclaimer);
+      try {
+        const parsedState = JSON.parse(savedState);
+        console.log('Parsed state:', JSON.stringify(parsedState, null, 2));
+        
+        const { 
+          currentIndex, 
+          answers, 
+          submittedAnswers, 
+          currentScore, 
+          answeredQs,
+          disclaimer
+        } = parsedState;
+        
+        // Convert answeredQs back to Map
+        const answeredQsMap = new Map<number, { selectedAnswers: string[]; isCorrect: boolean }>();
+        if (answeredQs) {
+          Object.entries(answeredQs).forEach(([key, value]) => {
+            answeredQsMap.set(Number(key), value as { selectedAnswers: string[]; isCorrect: boolean });
+          });
+        }
+        
+        console.log('Restoring state:', JSON.stringify({
+          currentIndex,
+          answers,
+          submittedAnswers,
+          currentScore,
+          answeredQs: Object.fromEntries(answeredQsMap),
+          disclaimer
+        }, null, 2));
+        
+        setCurrentQuestionIndex(currentIndex);
+        setSelectedAnswers(answers || {});
+        setSubmitted(submittedAnswers || {});
+        setScore(currentScore || 0);
+        setAnsweredQuestions(answeredQsMap);
+        setShowDisclaimer(disclaimer || {});
+      } catch (error) {
+        console.error('Error restoring state:', error);
+      }
+    } else {
+      console.log('No saved state found for session:', sessionId);
     }
   }, [sessionId]);
 
   // Save state whenever it changes
   useEffect(() => {
+    console.log('Saving state for session:', sessionId);
     const stateToSave = {
       currentIndex: currentQuestionIndex,
       answers: selectedAnswers,
@@ -48,8 +78,26 @@ export default function Quiz({ questions, sessionId }: QuizProps) {
       answeredQs: Object.fromEntries(answeredQuestions),
       disclaimer: showDisclaimer
     };
-    localStorage.setItem(`quiz-state-${sessionId}`, JSON.stringify(stateToSave));
+    console.log('State to save:', JSON.stringify(stateToSave, null, 2));
+    
+    // Validate state before saving
+    if (Object.keys(selectedAnswers).length > 0 || 
+        Object.keys(submitted).length > 0 || 
+        score > 0 || 
+        answeredQuestions.size > 0) {
+      localStorage.setItem(`quiz-state-${sessionId}`, JSON.stringify(stateToSave));
+      console.log('State saved successfully');
+    } else {
+      console.log('No meaningful state to save');
+    }
   }, [currentQuestionIndex, selectedAnswers, submitted, score, answeredQuestions, showDisclaimer, sessionId]);
+
+  // Clear state when component unmounts
+  useEffect(() => {
+    return () => {
+      console.log('Component unmounting, session:', sessionId);
+    };
+  }, [sessionId]);
 
   const currentQuestion = questions[currentQuestionIndex];
   const selectedAnswersForCurrentQuestion = selectedAnswers[currentQuestionIndex] || [];
@@ -186,6 +234,7 @@ export default function Quiz({ questions, sessionId }: QuizProps) {
       <div className="quiz-header">
         <h2>AI Quiz Demo</h2>
         <div className="quiz-controls">
+          <span className="learner-id">Learner: {sessionId.replace('learner-', '')}</span>
           <span className="score">Score: {score}/{questions.length}</span>
           <Button variant="normal" onClick={handleReset}>Reset Quiz</Button>
           <Button variant="normal" onClick={() => handleToggleDisclaimer()}>Disclaimer</Button>

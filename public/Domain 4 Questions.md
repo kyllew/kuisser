@@ -299,3 +299,103 @@ Correct Answer:
 		D. Pre-training a new LLM - This is extremely costly and time-consuming compared to fine-tuning
 	Resource URL:
 	https://aws.amazon.com/blogs/aws/customize-models-in-amazon-bedrock-with-your-own-data-using-fine-tuning-and-continued-pre-training/
+
+Q144
+A company is using a generative AI model to develop a digital assistant. The model’s responses occasionally include undesirable and potentially harmful content.  
+Select the correct Amazon Bedrock filter policy from the following list for each mitigation action. Hotspot - Each filter policy should be selected one time.
+Action 1 = Block input prompts or model responses that contain harmful content such as hate, insults, violence, or misconduct
+Action 2 = Avoid subjects related to illegal investment advise or legal advice
+Action 3 = Detect and block specific offensive term
+Action 14 = Detect and filter out information in the model's responses that is not grounded in the provided source information
+
+Filter Policy 1 = Content filters;
+Filter Policy 2 = Contextual grounding check;
+Filter Policy 3 = Denied topics;
+Filter Policy 4 = Word filters;
+
+Options :
+A. Action 1 - Policy 1, Action 2 - Policy 2, Action 3 - Policy 3, Action 4 - Policy 4
+B. Action 1 - Policy 1, Action 2 - Policy 3, Action 3 - Policy 4, Action 4 - Policy 2
+C. Action 1 - Policy 2, Action 2 - Policy 3, Action 3 - Policy 1, Action 4 - Policy 4
+D. Action 1 - Policy 2, Action 2 - Policy 3, Action 3 - Policy 4, Action 4 - Policy 1
+
+Correct Answer: 
+	B. Action 1 - Content filters (Policy 1), Action 2 - Denied topics (Policy 3), Action 3 - Word filters (Policy 4), Action 4 - Contextual grounding check (Policy 2)
+	--- Domain 4: Guidelines for Responsible AI, Task Statement 4.1: "Explain the development of AI systems that are responsible." ---
+	Explanation: 
+		Answer B is correct because:
+		Action 1 - Content filters (Policy 1):
+		- Specifically designed to block harmful content
+		- Handles broad categories of inappropriate content
+		- Addresses hate, insults, violence, and misconduct
+		Action 2 - Denied topics (Policy 3):
+		- Prevents discussion of specific topics
+		- Perfect for blocking specific subjects like investment/legal advice
+		- Controls model's topic boundaries
+		Action 3 - Word filters (Policy 4):
+		- Blocks specific offensive terms
+		- Handles individual word-level filtering
+		- Most appropriate for term-specific blocking
+		Action 4 - Contextual grounding check (Policy 2):
+		- Ensures responses are grounded in provided information
+		- Prevents hallucinations or ungrounded responses
+		- Validates response content against source material
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html
+
+
+Q145
+Which option is a benefit of using Amazon SageMaker Model Cards to document AI models?
+Options:
+A. Providing a visually appealing summary of a mode’s capabilities.
+B. Standardizing information about a model’s purpose, performance, and limitations.
+C. Reducing the overall computational requirements of a model.
+D. Physically storing models for archival purposes.
+
+Correct Answer: 
+	B. Standardizing information about a model's purpose, performance, and limitations
+	--- Domain 4: Guidelines for Responsible AI, Task Statement 4.2: "Recognize the importance of transparent and explainable models." ---
+	Explanation: 
+	Answer B is correct because:
+	- Model Cards provide standardized documentation of model characteristics
+	- They capture crucial information about model purpose and limitations
+	- Help ensure transparency in model development and deployment
+	- Enable better understanding of model capabilities and constraints
+	- Support responsible AI practices through clear documentation
+	The other answers are not suitable because:
+	A. Visual appeal - While cards may be visual, their primary purpose is documentation, not aesthetics
+	C. Computational requirements - Model Cards don't affect model computation
+	D. Physical storage - Model Cards are for documentation, not model storage
+	Resource URL:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html
+
+
+Q148
+A company built an AI-powered resume screening system. The company used a large dataset to train the model. The dataset contained resumes that were not representative of all demographics.  
+Which core dimension of responsible AI does this scenario present?
+Options:
+A. Fairness
+B. Explainability
+C. Privacy and security
+D. Transparency
+
+Correct Answer: 
+	A. Fairness
+	--- Domain 4: Guidelines for Responsible AI, Task Statement 4.1: "Explain the development of AI systems that are responsible." ---
+	Explanation: 
+		Answer A is correct because:
+		- The scenario describes a potential bias issue due to unrepresentative training data
+		- Fairness in AI systems requires balanced representation across all demographics
+		- Using unrepresentative data can lead to discriminatory outcomes
+		- This directly relates to fair treatment of all groups in AI decision-making
+		- Fairness is a key principle of responsible AI development
+		The other answers are not suitable because:
+		B. Explainability - This relates to understanding model decisions, not demographic representation
+		C. Privacy and security - This relates to data protection, not demographic representation
+		D. Transparency - This relates to openness about model operation, not fairness in representation
+	Resource URL:
+	https://aws.amazon.com/ai/responsible-ai/
+
+
+
+
