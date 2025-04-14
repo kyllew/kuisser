@@ -106,12 +106,14 @@ export default function App() {
         try {
           const allQuestions: Question[] = [];
           for (const file of DOMAIN_FILES) {
+            console.log(`Loading questions from ${file.value}...`);
             const response = await fetch(`/${file.value}`);
             const text = await response.text();
             const questions = parseMarkdownQuiz(text);
+            console.log(`Loaded ${questions.length} questions from ${file.value}`);
             allQuestions.push(...questions);
           }
-          console.log('All questions loaded:', allQuestions.length);
+          console.log('Total questions loaded:', allQuestions.length);
           setQuestions(allQuestions);
         } catch (error) {
           console.error('Error loading questions:', error);

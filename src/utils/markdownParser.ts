@@ -5,8 +5,7 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
   const questions: QuizQuestion[] = [];
   const skippedQuestions: { number: string; reason: string }[] = [];
   const expectedRanges = [
-    { start: 1, end: 50 },
-    { start: 101, end: 120 }
+    { start: 1, end: 155 }    // All questions from Q1 to Q155
   ];
   
   console.log('Starting to parse markdown...');
@@ -55,7 +54,8 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
     questionText = questionLines.join(' ');
 
     if (!questionText) {
-      console.log(`No question text found in section ${i}`);
+      console.log(`No question text found in section ${i} for Q${questionNumber}`);
+      console.log('First few lines:', lines.slice(0, 5).join('\n'));
       continue;
     }
 
@@ -71,9 +71,22 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
                        questionText.toLowerCase().includes('(select two)') ||
                        questionText.toLowerCase().includes('select 2') ||
                        questionText.toLowerCase().includes('two answers') ||
-                       questionText.toLowerCase().includes('multiple answers'),
+                       questionText.toLowerCase().includes('multiple answers') ||
+                       questionText.toLowerCase().includes('(choose two.)') ||
+                       questionText.toLowerCase().includes('choose two.') ||
+                       questionText.toLowerCase().includes('choose two?'),
       explanation: ''
     };
+
+    // Add debug logging for all questions
+    console.log(`\nProcessing Q${questionNumber}:`, {
+      questionText: questionText.substring(0, 100) + '...',
+      isMultipleAnswer: question.isMultipleAnswer,
+      firstLine: lines[0],
+      optionsLine: lines.find(line => line.toLowerCase().startsWith('options')),
+      answerLine: lines.find(line => line.toLowerCase().includes('correct answer')),
+      explanationLine: lines.find(line => line.toLowerCase().startsWith('explanation'))
+    });
 
     let currentSection: 'options' | 'answer' | 'explanation' = 'options';
     let explanationLines: string[] = [];
@@ -88,10 +101,8 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
       const line = lines[j].trim();
       if (!line) continue;
 
-      console.log(`Processing line ${j}:`, line);
-
       // Section detection with clear boundaries
-      if (line.toLowerCase().startsWith('options')) {
+      if (line.toLowerCase().startsWith('options') || line.toLowerCase().startsWith('options :')) {
         console.log('Found options section');
         currentSection = 'options';
         inOptionsSection = true;
@@ -152,11 +163,19 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
               console.log(`Found answer ${answers[0]} from line: ${answerLine}`);
             }
 
-            // If this is a multiple answer question and we haven't found all answers yet,
-            // don't mark answerFound as true
-            if (!question.isMultipleAnswer || question.answer.length >= 2) {
-              answerFound = true;
-              console.log(`Complete answer set: ${question.answer.join(', ')}`);
+            // For multiple answer questions, we need to check if we have enough answers
+            if (question.isMultipleAnswer) {
+              // If we have at least 2 answers, mark as found
+              if (question.answer.length >= 2) {
+                answerFound = true;
+                console.log(`Complete answer set for multiple answer question: ${question.answer.join(', ')}`);
+              }
+            } else {
+              // For single answer questions, mark as found if we have any answer
+              if (question.answer.length > 0) {
+                answerFound = true;
+                console.log(`Found single answer: ${question.answer[0]}`);
+              }
             }
           }
           break;
@@ -199,9 +218,11 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
         hasOptions: optionsFound,
         hasAnswer: answerFound,
         hasExplanation: explanationLines.length > 0,
+        questionText: questionText.substring(0, 100) + '...',
         optionsCount: question.options.length,
-        explanationLinesCount: explanationLines.length,
-        answers: question.answer
+        answerCount: question.answer.length,
+        explanationLineCount: explanationLines.length,
+        rawText: section.substring(0, 200) + '...' // Add raw text for debugging
       });
     }
   }
@@ -217,6 +238,14 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
       totalExpected++;
       if (!foundQuestionNumbers.has(num)) {
         missingQuestions.push(num);
+        console.log(`\nDetailed analysis for missing Q${num}:`);
+        // Check if the question exists in the markdown
+        const questionExists = sections.some(section => section.trim().startsWith(`Q${num}`));
+        console.log(`- Question exists in markdown: ${questionExists}`);
+        if (questionExists) {
+          const questionSection = sections.find(section => section.trim().startsWith(`Q${num}`));
+          console.log(`- Question section preview: ${questionSection?.substring(0, 200)}...`);
+        }
       } else {
         totalFound++;
       }

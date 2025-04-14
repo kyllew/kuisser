@@ -229,7 +229,7 @@ Correct Answer:
 Q126
 A company needs to log all requests made to its Amazon Bedrock API. The company must retain the logs securely for 5 years at the lowest possible cost.  
 Which combination of AWS service and storage class meets these requirements? (Choose two.)
-Options
+Options:
 A. AWS CloudTrail
 B. Amazon CloudWatch
 C. AWS Audit Manager
@@ -352,13 +352,11 @@ C. Amazon Inspector
 D. Amazon CloudWatch
 E. AWS CloudTrail
 
- Let me help classify and explain this question:
-
 Correct Answer: 
-	A. AWS Audit Manager
-	E. AWS CloudTrail
-	--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.2: "Recognize governance and compliance regulations for AI systems." ---
-	Explanation: 
+A. AWS Audit Manager
+E. AWS CloudTrail
+--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.2: "Recognize governance and compliance regulations for AI systems." ---
+Explanation: 
 	Answer A (AWS Audit Manager) is correct because:
 	- Specifically designed for continuous auditing and compliance monitoring
 	- Helps assess compliance with industry regulations
@@ -378,3 +376,28 @@ Correct Answer:
 	https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
 	
 
+Q54
+A company wants to build an interactive application for children that generates new stories based on classic stories. The company wants to use Amazon Bedrock and needs to ensure that the results and topics are appropriate for children.  
+Which AWS service or feature will meet these requirements?
+Options:
+A. Amazon Rekognition
+B. Amazon Bedrock playgrounds
+C. Guardrails for Amazon Bedrock
+D. Agents for Amazon Bedrock
+
+Correct Answer:
+	C. Guardrails for Amazon Bedrock
+	--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.1: "Explain methods to secure AI systems." ---
+	Explanation:
+	Answer C is correct because:
+	Guardrails for Amazon Bedrock is specifically designed to help control the output of foundation models. In this scenario, where the company needs to ensure that the generated stories are appropriate for children, Guardrails can be used to:
+	1. Filter out inappropriate content
+	2. Ensure that the language and themes are child-friendly
+	3. Set boundaries on the types of stories and topics that can be generated
+	This aligns perfectly with the requirement to make sure the results and topics are suitable for a young audience.
+	The other answers are not suitable/not relevant because:
+	A. Amazon Rekognition: This service is primarily used for image and video analysis, not for text generation or content filtering in the context of storytelling.
+	B. Amazon Bedrock playgrounds: While playgrounds are useful for experimenting with and testing foundation models, they don't provide the content control and filtering capabilities needed for this use case.
+	D. Agents for Amazon Bedrock: Agents are designed to help break down complex tasks into steps and interact with external tools or data sources. While useful, they don't specifically address the content appropriateness concerns for children.
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html

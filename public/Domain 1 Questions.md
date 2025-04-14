@@ -784,3 +784,167 @@ Correct Answer:
 		D. Support vector machine - This is a supervised learning algorithm for classification, not suitable for finding natural groups
 	Resource URL:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/k-means.html
+
+Q151
+A company wants to identify harmful language in the comments section of social media posts by using an ML model. The company will not use labeled data to train the model.  
+Which strategy should the company use to identify harmful language?
+Options:
+A. Use Amazon Rekognition moderation.
+B. Use Amazon Comprehend toxicity detection.
+C. Use Amazon SageMaker built-in algorithms to train the model.
+D. Use Amazon Polly to monitor comments.
+
+Let me help classify and explain this question:
+
+Correct Answer: 
+	B. Use Amazon Comprehend toxicity detection
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.2: "Identify practical use cases for AI." ---
+	Explanation: 
+		Answer B is correct because:
+		- Amazon Comprehend has built-in toxicity detection capabilities
+		- Doesn't require labeled training data (meets the requirement)
+		- Specifically designed for text analysis and content moderation
+		- Can automatically identify harmful language in text
+		- Ready-to-use service without need for model training
+		The other answers are not suitable because:
+		A. Amazon Rekognition - For image and video analysis, not text content
+		C. SageMaker built-in algorithms - Would require labeled training data
+		D. Amazon Polly - For text-to-speech conversion, not content moderation
+	Resource URL:
+	https://docs.aws.amazon.com/comprehend/latest/dg/toxicity.html
+
+Q152
+A media company wants to analyze viewer behavior and demographics to recommend personalized content. The company wants to deploy a customized ML model in its production environment. The company also wants to observe if the model quality drifts over time.  
+Which AWS service or feature meets these requirements?
+Options:
+A. Amazon Rekognition
+B. Amazon SageMaker Clarify
+C. Amazon Comprehend
+D. Amazon SageMaker Model Monitor
+
+Correct Answer: 
+	D. Amazon SageMaker Model Monitor
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.3: "Describe the ML development lifecycle" ---
+	Explanation: 
+	Answer D is correct because:
+	- SageMaker Model Monitor specifically tracks model quality and drift over time
+	- Designed for monitoring models in production environments
+	- Can detect data and model drift
+	- Provides continuous monitoring capabilities
+	- Helps maintain model quality in production
+	The other answers are not suitable because:
+	A. Amazon Rekognition - For image and video analysis, not model monitoring
+	B. SageMaker Clarify - For bias detection and model explainability, not continuous monitoring
+	C. Amazon Comprehend - For natural language processing, not model monitoring
+	Resource URL:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html
+
+
+Q154
+A manufacturing company wants to create product descriptions in multiple languages.  
+Which AWS service will automate this task?
+Options:
+A. Amazon Translate
+B. Amazon Transcribe
+C. Amazon Kendra
+D. Amazon Polly
+
+Correct Answer: 
+	A. Amazon Translate
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.2: "Identify practical use cases for AI." ---
+	Explanation: 
+	Answer A is correct because:
+	- Amazon Translate is specifically designed for translating text between languages
+	- It can automatically create product descriptions in multiple languages
+	- Supports real-time and batch translation
+	- Ideal for multilingual content creation
+	- Provides neural machine translation capabilities
+	The other answers are not suitable because:
+	B. Amazon Transcribe - Converts speech to text, not for language translation
+	C. Amazon Kendra - Enterprise search service, not for translation
+	D. Amazon Polly - Text-to-speech service, not for translation
+	Resource URL:
+	https://docs.aws.amazon.com/translate/latest/dg/what-is.html
+
+Q56
+A digital devices company wants to predict customer demand for memory hardware. The company does not have coding experience or knowledge of ML algorithms and needs to develop a data-driven predictive model. The company needs to perform analysis on internal data and external data.  
+Which solution will meet these requirements?
+Options:
+A. Store the data in Amazon S3. Create ML models and demand forecast predictions by using Amazon SageMaker built-in algorithms that use the data from Amazon S3.
+B. Import the data into Amazon SageMaker Data Wrangler. Create ML models and demand forecast predictions by using SageMaker built-in algorithms.
+C. Import the data into Amazon SageMaker Data Wrangler. Build ML models and demand forecast predictions by using an Amazon Personalize Trending-Now recipe.
+D. Import the data into Amazon SageMaker Canvas. Build ML models and demand forecast predictions by selecting the values in the data from SageMaker Canvas.
+
+Correct Answer:
+	D. Import the data into Amazon SageMaker Canvas. Build ML models and demand forecast predictions by selecting the values in the data from SageMaker Canvas.
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.2: "Identify practical use cases for AI." ---
+	Explanation:
+	Answer D is correct because:
+	1. Amazon SageMaker Canvas is specifically designed for users without coding experience or deep ML knowledge, which aligns perfectly with the company's situation.
+	2. SageMaker Canvas allows users to build ML models and generate predictions using a visual, point-and-click interface, making it ideal for the company's needs.
+	3. It supports importing data from various sources, including both internal and external data, which meets the company's requirement to perform analysis on both types of data.
+	4. SageMaker Canvas can be used to create demand forecasting models, which is exactly what the digital devices company needs for predicting customer demand for memory hardware.
+	The other answers are not suitable/not relevant because:
+	A. While this solution could work, it requires more technical knowledge and coding experience to use Amazon SageMaker directly, which the company lacks.
+	B. This solution also requires more technical expertise to use SageMaker built-in algorithms, which doesn't align with the company's lack of coding experience and ML knowledge.
+	C. Amazon Personalize is primarily used for personalization and recommendation systems, not for general demand forecasting. It's not the most suitable tool for this use case.
+	Resource URL:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html
+
+Q58
+A company is building a customer service chatbot. The company wants the chatbot to improve its responses by learning from past interactions and online resources.  
+Which AI learning strategy provides this self-improvement capability?
+Options:
+A. Supervised learning with a manually curated dataset of good responses and bad responses
+B. Reinforcement learning with rewards for positive customer feedback
+C. Unsupervised learning to find clusters of similar customer inquiries
+D. Supervised learning with a continuously updated FAQ database
+
+Correct Answer:
+	B. Reinforcement learning with rewards for positive customer feedback
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.1: "Explain basic AI concepts and terminologies." ---
+	Explanation:
+	Answer B is correct because:
+	Reinforcement learning is an AI learning strategy that allows an agent (in this case, the chatbot) to learn from its interactions with the environment (customer interactions) and improve its performance over time. This approach aligns perfectly with the company's requirement for the chatbot to improve its responses by learning from past interactions.
+	1. The chatbot can receive rewards for positive customer feedback, encouraging it to repeat successful interactions.
+	2. It can learn from both past interactions and potentially incorporate information from online resources to improve its responses.
+	3. This approach allows for continuous learning and adaptation, which is essential for a customer service chatbot that needs to handle evolving customer inquiries.
+	The other answers are not suitable/not relevant because:
+	A. Supervised learning with a manually curated dataset: This approach doesn't allow for continuous improvement based on new interactions. It relies on pre-labeled data and doesn't provide the self-improvement capability required.
+	C. Unsupervised learning to find clusters: While this could be useful for organizing customer inquiries, it doesn't directly improve the chatbot's responses or provide a mechanism for learning from past interactions.
+	D. Supervised learning with a continuously updated FAQ database: This approach, while potentially useful, doesn't fully capture the requirement for the chatbot to learn from its interactions. It's more about updating the knowledge base rather than learning from the outcomes of its responses.
+	Resource URL:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/reinforcement-learning.html
+
+Q59
+An AI engineer has built a deep learning model to classify the types of materials in images. The AI engineer now wants to measure the model performance.  
+Which metric will help the AI practitioner evaluate the performance of the model?
+Options:
+A. Confusion matrix
+B. Correlation matrix
+C. R2 score
+D. Mean squared error (MSE)
+
+Correct Answer:
+	A. Confusion matrix
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.3: "Describe the ML development lifecycle." ---
+	Explanation:
+	Answer A is correct because:
+	A confusion matrix is the most appropriate metric for evaluating classification model performance because:
+	1. It provides a detailed breakdown of correct and incorrect predictions for each class
+	2. It shows true positives, true negatives, false positives, and false negatives
+	3. From the confusion matrix, you can derive important classification metrics like:
+	   * Accuracy
+	   * Precision
+	   * Recall
+	   * F1-score
+	1. It's specifically designed for classification problems, which matches the scenario of classifying materials in images
+	The other answers are not suitable/not relevant because:
+	B. Correlation matrix: This shows relationships between variables in the dataset, not model performance. It's not useful for evaluating classification accuracy.
+	C. R2 score: This is a metric for regression problems that measures how well the model fits the data. It's not appropriate for classification tasks.
+	D. Mean squared error (MSE): This is also a metric for regression problems that measures the average squared difference between predicted and actual values. It's not suitable for classification tasks.
+	Resource URLs:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality.html
+	https://docs.aws.amazon.com/machine-learning/latest/dg/evaluating-model-performance.html
+
+ 

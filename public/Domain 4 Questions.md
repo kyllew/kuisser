@@ -396,6 +396,103 @@ Correct Answer:
 	Resource URL:
 	https://aws.amazon.com/ai/responsible-ai/
 
+Q153
+A company is deploying AI/ML models by using AWS services. The company wants to offer transparency into the models’ decision-making processes and provide explanations for the model outputs.  
+Which AWS service or feature meets these requirements?
+Options:
+A. Amazon SageMaker Model Cards
+B. Amazon Rekognition
+C. Amazon Comprehend
+D. Amazon Lex
+
+Correct Answer: 
+	A. Amazon SageMaker Model Cards
+	--- Domain 4: Guidelines for Responsible AI, Task Statement 4.2: "Recognize the importance of transparent and explainable models." ---
+	Explanation: 
+		Answer A is correct because:
+		- SageMaker Model Cards are specifically designed to provide transparency and explanations for ML models
+		- They document model details, performance metrics, and intended use cases
+		- Help in understanding model behavior and decision-making processes
+		- Promote model transparency and explainability
+		- Support responsible AI practices by providing clear model documentation
+		The other answers are not suitable because:
+		B. Amazon Rekognition - For image and video analysis, not for model transparency
+		C. Amazon Comprehend - For natural language processing, not for model explanations
+		D. Amazon Lex - For building conversational interfaces, not for model transparency
+	Resource URL:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html
 
 
+Q52
+A student at a university is copying content from generative AI to write essays.  
+Which challenge of responsible generative AI does this scenario represent?
+Options:
+A. Toxicity
+B. Hallucinations
+C. Plagiarism
+D. Privacy
 
+Correct Answer:
+	C. Plagiarism
+	--- Domain 4: Guidelines for Responsible AI, Task Statement 4.1: "Explain the development of AI systems that are responsible." ---
+	Explanation:
+		Answer C is correct because:
+		The scenario described represents plagiarism, which is a significant ethical concern in the development and use of responsible AI systems, particularly generative AI. When a student copies content directly from a generative AI system to write essays without proper attribution, it constitutes plagiarism. This practice raises important questions about academic integrity, the responsible use of AI tools, and the challenges of maintaining ethical standards in educational settings as AI becomes more prevalent.
+		The other answers are not suitable/not relevant because:
+		A. Toxicity: This refers to AI-generated content that is harmful, offensive, or inappropriate. The scenario doesn't mention the generation of harmful content.
+		B. Hallucinations: This term describes when AI models generate false or nonsensical information presented as fact. The scenario doesn't indicate that the AI is producing inaccurate information.
+		D. Privacy: While privacy is an important consideration in AI, the scenario doesn't involve issues of data privacy or protection of personal information.
+	Resource URL:
+	https://aws.amazon.com/machine-learning/responsible-ai/
+
+Q57
+A company has installed a security camera. The company uses an ML model to evaluate the security camera footage for potential thefts. The company has discovered that the model disproportionately flags people who are members of a specific ethnic group.  
+Which type of bias is affecting the model output?
+Options :
+A. Measurement bias
+B. Sampling bias
+C. Observer bias
+D. Confirmation bias
+
+Correct Answer:
+	B. Sampling bias
+	--- Domain 4: Guidelines for Responsible AI, Task Statement 4.1: "Explain the development of AI systems that are responsible." ---
+	Explanation:
+		Answer B is correct because:
+		Sampling bias occurs when the training data used to develop the ML model doesn't accurately represent all groups in the population. In this case, the model's disproportionate flagging of a specific ethnic group indicates that:
+		1. The training data likely didn't include a balanced representation of different ethnic groups
+		2. The model learned patterns from an unrepresentative sample of the population
+		3. This has resulted in unfair and discriminatory outcomes for certain groups
+		The other answers are not suitable/not relevant because:
+		A. Measurement bias: This occurs when the measurement method or tools used to collect data are flawed. This isn't the primary issue here, as the problem is with representation in the data, not how it's measured.
+		C. Observer bias: This refers to the tendency of researchers to see what they expect to see. This isn't relevant to the automated ML model's behavior.
+		D. Confirmation bias: This is the tendency to search for or interpret information in a way that confirms pre-existing beliefs. This isn't applicable to the automated system's biased behavior.
+		Resource URLs:
+		 https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-detect-data-bias.html
+		https://www.amazon.science/publications/sampling-bias-in-nlu-models-impact-and-mitigation
+
+Q60
+A company has built a chatbot that can respond to natural language questions with images. The company wants to ensure that the chatbot does not return inappropriate or unwanted images.  
+Which solution will meet these requirements?
+Options:
+A. Implement moderation APIs.
+B. Retrain the model with a general public dataset.
+C. Perform model validation.
+D. Automate user feedback integration.
+
+Correct Answer:
+	A. Implement moderation APIs.
+	--- Domain 4: Guidelines for Responsible AI, Task Statement 4.1: "Explain the development of AI systems that are responsible." ---
+	Explanation:
+	Answer A is correct because:
+	Implementing moderation APIs is the most direct and effective solution to ensure that the chatbot does not return inappropriate or unwanted images. Moderation APIs can:
+	1. Automatically filter and flag potentially inappropriate content in real-time.
+	2. Use pre-trained models to detect various categories of inappropriate content, such as explicit imagery, violence, or offensive material.
+	3. Provide a layer of protection between the chatbot's output and the end-user, ensuring responsible AI practices.
+	4. Be easily integrated into the existing chatbot system without requiring extensive retraining or model modifications.
+	The other answers are not suitable/not relevant because:
+	B. Retraining the model with a general public dataset: This approach doesn't guarantee the elimination of inappropriate content and could potentially introduce new biases or unwanted outputs.
+	C. Performing model validation: While important, this step alone doesn't actively prevent inappropriate images from being returned. It's more about assessing overall model performance.
+	D. Automating user feedback integration: This is a reactive approach that relies on users encountering inappropriate content before it can be addressed. It doesn't provide immediate prevention of unwanted images.	
+	Resource URL:
+	https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html

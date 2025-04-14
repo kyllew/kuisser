@@ -540,3 +540,55 @@ Correct Answer:
 	C. Pre-train and benchmark - Resource-intensive and doesn't handle dynamic updates well
 	Resource URL:
 	https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html
+
+Q53
+A company needs to build its own large language model (LLM) based on only the company's private data. The company is concerned about the environmental effect of the training process.  
+Which Amazon EC2 instance type has the LEAST environmental effect when training LLMs?
+Options:
+A. Amazon EC2 C series
+B. Amazon EC2 G series
+C. Amazon EC2 P series
+D. Amazon EC2 Trn series
+
+Correct Answer: 
+	D. Amazon EC2 Trn series
+	--- Domain 2: Fundamentals of Generative AI, Task Statement 2.3: "Describe AWS infrastructure and technologies for building generative AI applications." ---
+	Explanation:
+	Answer D is correct because:
+	- The Amazon EC2 Trn1 instances are powered by AWS Trainium chips, which are specifically designed for training deep learning models including LLMs
+	- AWS Trainium provides up to 50% lower cost-to-train and up to 40% better price-performance than current GPU-based instances
+	- These instances are optimized for energy efficiency during training, making them the most environmentally friendly option for training LLMs
+	- The Trainium chips are purpose-built for ML training workloads, resulting in better power efficiency compared to general-purpose GPUs
+	The other answers are not suitable because:
+	- A. C series instances are compute-optimized but not specifically designed for ML training
+	- B. G series instances use GPUs but are more general purpose and less energy efficient for ML training
+	- C. P series instances use NVIDIA GPUs which consume more power compared to AWS Trainium chips for ML training workloads
+	Resource URLs:
+	1. AWS Trainium Overview: https://aws.amazon.com/machine-learning/trainium/
+	2. EC2 Trn1 Instances: https://aws.amazon.com/ec2/instance-types/trn1/
+
+Q55
+A company is building an application that needs to generate synthetic data that is based on existing data.  
+Which type of model can the company use to meet this requirement?
+Options:
+A. Generative adversarial network (GAN)
+B. XGBoost
+C. Residual neural network
+D. WaveNet
+
+Correct Answer:
+	A. Generative adversarial network (GAN)
+	--- Domain 2: Fundamentals of Generative AI, Task Statement 2.1: "Explain the basic concepts of generative AI." ---
+	Explanation:
+		Answer A is correct because:
+		Generative adversarial networks (GANs) are specifically designed for generating synthetic data that mimics real data distributions. GANs consist of two neural networks:
+		1. A generator network that creates synthetic data
+		2. A discriminator network that tries to distinguish between real and synthetic data
+		This adversarial process allows GANs to produce high-quality synthetic data that closely resembles existing data, making them ideal for the company's requirement of generating synthetic data based on existing data.
+		The other answers are not suitable/not relevant because:
+		B. XGBoost: This is a popular machine learning algorithm for predictive modeling, but it's not designed for generating synthetic data. It's primarily used for classification and regression tasks.
+		C. Residual neural network: While this is a type of deep learning model, it's mainly used for image recognition and other tasks that benefit from very deep architectures. It's not specifically designed for generating synthetic data.
+		D. WaveNet: This is a deep learning model developed by DeepMind, primarily used for generating audio waveforms. While it's a generative model, it's specialized for audio and not suited for general synthetic data generation based on existing data.
+	Resource URL:
+	https://aws.amazon.com/what-is/gan/
+

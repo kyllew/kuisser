@@ -759,5 +759,69 @@ Correct Answer:
 	Resource URL:
 	https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html
 
+Q155 
+A company wants more customized responses to its generative AI models’ prompts.  
+Select the correct customization methodology from the following list for each use case. 
+Hotspot - Each use case should be selected one time.
+Use case 1 : The models must be taught a new domain-specific task
+Use case 2 : A limited amount of labeled data is available and more data is needed
+Use case 3 : Only unlabeled data is available
+
+Customization methodology.
+Method 1 : Continued pre-training
+Method 2 : Data augmentation
+Method 3 : Model fine-tuning
+
+Options :
+A. Use case 1 -- Method 1 ; Use case 2 -- Method 3 ; Use case 3 -- Method 2 ; 
+B. Use case 1 -- Method 3 ; Use case 2 -- Method 2 ; Use case 3 -- Method 1 ;
+C. Use case 1 -- Method 2 ; Use case 2 -- Method 3 ; Use case 3 -- Method 1 ;
+D. Use case 1 -- Method 1 ; Use case 2 -- Method 2 ; Use case 3 -- Method 3 ; 
+
+Correct Answer: 
+	B. Use case 1 -- Method 3 ; Use case 2 -- Method 2 ; Use case 3 -- Method 1
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.3: "Describe the training and fine-tuning process for foundation models." ---
+	Explanation:
+	Answer B is correct because:
+	Use case 1 (Model fine-tuning - Method 3):
+	- Fine-tuning is ideal for teaching new domain-specific tasks
+	- Adapts pre-trained models to specific domains or tasks
+	- Most effective for customizing models with task-specific data
+	Use case 2 (Data augmentation - Method 2):
+	- Helps create more training data from limited labeled data
+	- Increases dataset size and diversity
+	- Useful when more labeled data is needed but difficult to obtain
+	Use case 3 (Continued pre-training - Method 1):
+	- Suitable for scenarios with only unlabeled data
+	- Allows model to learn from large amounts of unlabeled text
+	- Improves general language understanding without specific task focus
+	The other options are not suitable because they incorrectly match the customization methodologies with the use cases.
+	Resource URL: 
+	https://aws.amazon.com/blogs/aws/customize-models-in-amazon-bedrock-with-your-own-data-using-fine-tuning-and-continued-pre-training/
 
 
+Q51
+A company needs to choose a model from Amazon Bedrock to use internally. The company must identify a model that generates responses in a style that the company's employees prefer.  
+What should the company do to meet these requirements?
+Options:
+A. Evaluate the models by using built-in prompt datasets.
+B. Evaluate the models by using a human workforce and custom prompt datasets.
+C. Use public model leaderboards to identify the model.
+D. Use the model InvocationLatency runtime metrics in Amazon CloudWatch when trying models.
+
+Correct Answer: 
+	B. Evaluate the models by using a human workforce and custom prompt datasets
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.4: "Describe methods to evaluate foundation model performance." ---
+	Explanation: 
+		Answer B is correct because:
+		- Human evaluation with custom prompts provides direct feedback on model style preferences
+		- Custom datasets ensure evaluation is relevant to company's specific needs
+		- Employee feedback helps determine which model best matches company's style requirements
+		- Human evaluation is crucial for subjective assessments like writing style
+		- Testing with actual users provides real-world validation
+		The other answers are not suitable because:
+		A. Built-in prompt datasets - May not reflect company-specific style preferences
+		C. Public leaderboards - Don't account for company-specific style preferences
+		D. InvocationLatency metrics - Measures performance speed, not response style quality
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-report-human-customer.html
