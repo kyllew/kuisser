@@ -58,12 +58,12 @@ export default function App() {
   });
 
   const handleLogin = (username: string, password: string) => {
-    // Check if username matches pattern learnerXX where XX is 01-30
+    // Check if username matches pattern learnerXX where XX is 01-50
     const learnerMatch = username.match(/^learner(\d{2})$/);
     if (learnerMatch) {
       const learnerNumber = parseInt(learnerMatch[1]);
-      // Check if learner number is between 01-30 and password matches pattern
-      if (learnerNumber >= 1 && learnerNumber <= 30 && password === `${learnerNumber}willpass`) {
+      // Check if learner number is between 01-50 and password matches pattern
+      if (learnerNumber >= 1 && learnerNumber <= 50 && password === `${learnerNumber}willpass`) {
         // Use a consistent sessionId based on username only
         const newSessionId = `learner-${learnerNumber}`;
         setSessionId(newSessionId);
@@ -105,15 +105,17 @@ export default function App() {
         setError(null);
         try {
           const allQuestions: Question[] = [];
+          let totalQuestions = 0;
           for (const file of DOMAIN_FILES) {
             console.log(`Loading questions from ${file.value}...`);
             const response = await fetch(`/${file.value}`);
             const text = await response.text();
             const questions = parseMarkdownQuiz(text);
             console.log(`Loaded ${questions.length} questions from ${file.value}`);
+            totalQuestions += questions.length;
             allQuestions.push(...questions);
           }
-          console.log('Total questions loaded:', allQuestions.length);
+          console.log(`Total questions loaded: ${totalQuestions}`);
           setQuestions(allQuestions);
         } catch (error) {
           console.error('Error loading questions:', error);
