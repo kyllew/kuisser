@@ -592,3 +592,31 @@ Correct Answer:
 	Resource URL:
 	https://aws.amazon.com/what-is/gan/
 
+Q63
+Which term describes the numerical representations of real-world objects and concepts that AI and natural language processing (NLP) models use to improve understanding of textual information?
+Options:
+A. Embeddings
+B. Tokens
+C. Models
+D. Binaries
+
+Correct Answer:
+	A. Embeddings
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.1: "Explain basic AI concepts and terminologies." ---
+	Explanation:
+	Answer A is correct because:
+	Embeddings are dense vector representations of words, phrases, or entire documents that capture semantic meaning and relationships. They are crucial in AI and NLP for several reasons:
+	1. They convert textual data into a format that machines can process efficiently.
+	2. They capture semantic similarities between words and concepts.
+	3. They allow for mathematical operations on text data, enabling tasks like similarity comparisons and analogical reasoning.
+	4. They are used in various NLP tasks such as text classification, sentiment analysis, and machine translation.
+	5. They help models understand context and nuances in language.
+	The other answers are not suitable/not relevant because:
+	B. Tokens: While tokens are units of text (like words or subwords) used in NLP, they are not the numerical representations described in the question.
+	C. Models: This refers to the entire AI system, not specifically to the numerical representations of concepts.
+	D. Binaries: This term is more related to computer science in general and doesn't describe the vector representations used in NLP.
+	Resource URL:
+	https://aws.amazon.com/what-is/embeddings-in-machine-learning/
+	Additional Resource:
+	https://developers.google.com/machine-learning/crash-course/embeddings/video-lecture
+

@@ -825,3 +825,107 @@ Correct Answer:
 		D. InvocationLatency metrics - Measures performance speed, not response style quality
 	Resource URL:
 	https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-report-human-customer.html
+
+Q64
+A research company built a chatbot by using a foundation model (FM) from Amazon Bedrock. The chatbot searches for answers to questions from a large database of research papers.  
+After multiple prompt engineering attempts, the company notices that the FM is performing poorly because of the complex scientific terms in the research papers.  
+How can the company improve the performance of the chatbot?
+Options:
+A. Use few-shot prompting to define how the FM can answer the questions.
+B. Use domain adaptation fine-tuning to adapt the FM to complex scientific terms.
+C. Change the FM inference parameters.
+D. Clean the research paper data to remove complex scientific terms.
+
+Correct Answer:
+	B. Use domain adaptation fine-tuning to adapt the FM to complex scientific terms.
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.3: "Describe the training and fine-tuning process for foundation models." ---
+	Explanation:
+	Answer B is correct because:
+	Domain adaptation fine-tuning is the most appropriate solution because:
+	1. It helps the model better understand domain-specific terminology
+	2. It adapts the foundation model to work with scientific language and concepts
+	3. It maintains the model's general capabilities while improving performance in the specific domain
+	4. It's specifically designed for cases where the model needs to work with specialized vocabulary or concepts
+	The other answers are not suitable/not relevant because:
+	A. Few-shot prompting: While this can help with simple tasks, it's not sufficient for handling complex scientific terminology consistently across a large database of research papers. It doesn't fundamentally improve the model's understanding of scientific terms.
+	C. Changing FM inference parameters: This would only adjust how the model generates responses but wouldn't improve its understanding of scientific terminology.
+	D. Cleaning the research paper data to remove complex scientific terms: This would actually remove important information needed for accurate responses and defeat the purpose of having a scientific research chatbot.
+	Resource URL:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-fine-tuning-domain-adaptation.html
+
+Q65
+A company wants to utilize a large language model (LLM) on Amazon Bedrock for sentiment analysis. The company needs the LLM to produce more consistent responses to the same input prompt. Which adjustment to an inference parameter should the company make to meet these requirements?
+Options:
+A. Decrease the temperature value.
+B. Increase the temperature value.
+C. Decrease the length of output tokens.
+D. Increase the maximum generation length.
+
+Correct Answer:
+	A. Decrease the temperature value.
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.1: "Describe design considerations for applications that use foundation models" ---
+	Explanation:
+	Answer A is correct because:
+	1. Temperature is a parameter that controls the randomness in the model's output.
+	2. A lower temperature value makes the model's responses more deterministic and focused.
+	3. Decreasing the temperature will lead to more consistent and predictable outputs for the same input prompt.
+	4. For tasks like sentiment analysis, where consistency is crucial, a lower temperature is generally preferred.
+	5. This adjustment aligns with the company's need for more consistent responses in their sentiment analysis application.
+	The other answers are not suitable/not relevant because:
+	B. Increasing the temperature value would make the outputs more random and diverse, which is opposite to the desired consistency.
+	C. Decreasing the length of output tokens might truncate important information and doesn't directly address the consistency issue.
+	D. Increasing the maximum generation length doesn't affect the consistency of responses and may lead to unnecessary verbosity in sentiment analysis tasks.
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html
+
+Q69
+An education startup company is building a Q&A application that uses a generative AI model to explain complex concepts. The education provider wants to automatically change the style of the model response depending on who is asking the question. The education provider will give the model the age range of the user who has asked the question.  
+Which solution meets these requirements with the LEAST implementation effort?
+Options:
+A. Fine-tune the model by using additional training data that is representative of the various age ranges that the application will support.
+B. Add a role description to the prompt context that instructs the model of the age range that the response should target.
+C. Use chain-of-thought reasoning to deduce the correct style and complexity for a response suitable for that user.
+D. Summarize the response text depending on the age of the user so that younger users receive shorter responses.
+
+Correct Answer:
+	B. Add a role description to the prompt context that instructs the model of the age range that the response should target.
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.2: "Choose effective prompt engineering techniques." ---
+	Explanation:
+	Answer B is correct because:
+	1. It directly addresses the requirement to change the style of the model response based on the user's age range.
+	2. Adding a role description to the prompt context is a simple and effective prompt engineering technique.
+	3. This method requires the least implementation effort compared to other options.
+	4. It leverages the model's existing capabilities to adjust its output based on given instructions.
+	5. This approach can be easily modified or updated without retraining or complex implementations.
+	The other answers are not suitable/not relevant because:
+	A. Fine-tuning the model requires significant effort, data collection, and computational resources. It's not the least effort solution.
+	C. Chain-of-thought reasoning, while powerful, is more complex to implement and may not be necessary for simply adjusting the response style based on age.
+	D. Summarizing the response text doesn't necessarily adjust the style or complexity of the explanation, which is what the question asks for.
+	Resource URL:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering.html
+	https://aws.amazon.com/blogs/machine-learning/prompt-engineering-techniques-and-best-practices-learn-by-doing-with-anthropics-claude-3-on-amazon-bedrock/
+
+Q70
+Which strategy evaluates the accuracy of a foundation model (FM) that is used in image classification tasks?
+Options:
+A. Calculate the total cost of resources used by the model.
+B. Measure the model's accuracy against a predefined benchmark dataset.
+C. Count the number of layers in the neural network.
+D. Assess the color accuracy of images processed by the model.
+
+Correct Answer: 
+	B. Measure the model's accuracy against a predefined benchmark dataset.
+	--- Domain 3: Applications of Foundation Models, Task Statement 3.4: "Describe methods to evaluate foundation model performance." ---
+	Explanation:
+	Answer B is correct because:
+	1. Using a predefined benchmark dataset is a standard and effective way to evaluate model performance.
+	2. It provides a quantitative measure of the model's accuracy in image classification tasks.
+	3. Benchmark datasets allow for consistent and comparable evaluations across different models.
+	4. This method directly addresses the accuracy of the model, which is the focus of the question.
+	5. It's a widely accepted practice in machine learning for evaluating model performance.
+	The other answers are not suitable/not relevant because:
+	A. Calculating the total cost of resources used by the model doesn't evaluate its accuracy. It's a measure of efficiency, not performance.
+	C. Counting the number of layers in the neural network doesn't provide information about the model's accuracy. It's a structural characteristic, not a performance metric.
+	D. Assessing the color accuracy of processed images is too specific and doesn't necessarily reflect the overall classification accuracy of the model.
+	Resource URL: https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality.html
+

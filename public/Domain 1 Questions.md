@@ -947,4 +947,57 @@ Correct Answer:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality.html
 	https://docs.aws.amazon.com/machine-learning/latest/dg/evaluating-model-performance.html
 
- 
+ Q62
+ A startup company has project requirement to build an ML model to analyze archived data. The company must perform inference on large datasets that are multiple GBs in size. The company does not required to access the model predictions immediately.  
+Which Amazon SageMaker inference option will meet these requirements?
+Options:
+A. Batch transform
+B. Real-time inference
+C. Serverless inference
+D. Asynchronous inference
+
+Correct Answer:
+	A. Batch transform
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.3: "Describe the ML development lifecycle." ---
+	Explanation:
+		Answer A is correct because:
+		Amazon SageMaker Batch Transform is specifically designed for:
+		1. Processing large datasets in batches
+		2. Analyzing archived data without real-time requirements
+		3. Running predictions on multiple GB-sized datasets efficiently
+		4. Scenarios where immediate results are not needed
+		5. Cost-effective processing of large volumes of data
+		The other answers are not suitable/not relevant because:
+		B. Real-time inference: This is designed for scenarios requiring immediate responses and is not cost-effective for large batch processing of archived data.
+		C. Serverless inference: While this automatically manages infrastructure, it's better suited for workloads with intermittent traffic patterns and smaller payload sizes.
+		D. Asynchronous inference: While this handles long processing times, it's typically used for individual requests that take a long time to process, not necessarily for large batch datasets.
+	Resource URLs:
+	https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html
+
+
+Q68
+A company manually reviews all submitted resumes in PDF format. As the company business is growing, the company expects the volume of resumes to exceed the company's review capacity. The company needs an automated system to convert the PDF resumes into plain text format for additional processing.  
+Which AWS service meets this requirement?
+Options:
+A. Amazon Textract
+B. Amazon Personalize
+C. Amazon Lex
+D. Amazon Transcribe
+
+Correct Answer:
+	A. Amazon Textract
+	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.2: "Identify practical use cases for AI." ---
+	Explanation:
+	Answer A is correct because:
+	Amazon Textract is specifically designed to:
+	1. Extract text, forms, and data from scanned documents including PDFs
+	2. Convert document text into machine-readable format
+	3. Maintain text formatting and structure during extraction
+	4. Handle large volumes of documents efficiently
+	5. Process multiple types of documents including resumes
+	The other answers are not suitable/not relevant because:
+	B. Amazon Personalize - This service is for creating personalized recommendations and is not related to document text extraction.
+	C. Amazon Lex - This is a service for building conversational interfaces using voice and text, not for document processing.
+	D. Amazon Transcribe - This service converts speech to text (audio/video to text) and is not designed for extracting text from PDF documents.
+	Resource URL:
+	https://docs.aws.amazon.com/textract/latest/dg/what-is.html

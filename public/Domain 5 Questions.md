@@ -353,10 +353,10 @@ D. Amazon CloudWatch
 E. AWS CloudTrail
 
 Correct Answer: 
-A. AWS Audit Manager
-E. AWS CloudTrail
---- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.2: "Recognize governance and compliance regulations for AI systems." ---
-Explanation: 
+	A. AWS Audit Manager
+	E. AWS CloudTrail
+	--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.2: "Recognize governance and compliance regulations for AI systems." ---
+	Explanation: 
 	Answer A (AWS Audit Manager) is correct because:
 	- Specifically designed for continuous auditing and compliance monitoring
 	- Helps assess compliance with industry regulations
@@ -401,3 +401,84 @@ Correct Answer:
 	D. Agents for Amazon Bedrock: Agents are designed to help break down complex tasks into steps and interact with external tools or data sources. While useful, they don't specifically address the content appropriateness concerns for children.
 	Resource URL:
 	https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html
+
+Q61
+An AI engineer is leveraging on Amazon Bedrock base model to summarize session chats from the customer service department. The AI engineer wants to store invocation logs to monitor model input and output data.  
+Which strategy should the AI practitioner use?
+Options:
+A. Configure AWS CloudTrail as the logs destination for the model.
+B. Enable invocation logging in Amazon Bedrock.
+C. Configure AWS Audit Manager as the logs destination for the model.
+D. Configure model invocation logging in Amazon EventBridge.
+
+Correct Answer:
+	B. Enable invocation logging in Amazon Bedrock
+	--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.1: "Explain methods to secure AI systems." ---
+	Explanation:
+		Answer B is correct because:
+		Amazon Bedrock provides built-in invocation logging capabilities that:
+		1. Allow monitoring of model input and output data directly
+		2. Enable tracking of model usage and performance
+		3. Provide detailed logs of model interactions
+		4. Can be used to audit and monitor the summarization process
+		5. Are specifically designed for foundation model monitoring
+		The other answers are not suitable/not relevant because:
+		A. AWS CloudTrail: While CloudTrail can log API calls, it's not designed specifically for model input/output logging. It tracks AWS API calls for governance and compliance but doesn't provide the detailed model invocation data needed in this scenario.
+		C. AWS Audit Manager: This service is designed for assessing compliance with standards and frameworks, not for monitoring model input and output data in real-time.
+		D. Amazon EventBridge: This is an event bus service for building event-driven applications. While it can be used for monitoring, it's not the primary tool for logging model invocations.
+	Resource URLs:
+	 https://docs.aws.amazon.com/bedrock/latest/userguide/monitoring.html
+
+Q66
+A company wants to develop a large language model (LLM) application by using Amazon Bedrock and customer data that is uploaded to Amazon S3. The company's security policy states that each team can access data for only the team's own customers.  
+Which solution will meet these requirements?
+Options:
+A. Create an Amazon Bedrock custom service role for each team that has access to only the team's customer data.
+B. Create a custom service role that has Amazon S3 access. Ask teams to specify the customer name on each Amazon Bedrock request.
+C. Redact personal data in Amazon S3. Update the S3 bucket policy to allow team access to customer data.
+D. Create one Amazon Bedrock role that has full Amazon S3 access. Create IAM roles for each team that have access to only each team's customer folders.
+
+Correct Answer:
+	A. Create an Amazon Bedrock custom service role for each team that has access to only the team's customer data.
+	--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.1: "Explain methods to secure AI systems." ---
+	Explanation:
+	Answer A is correct because:
+	1. It implements the principle of least privilege by giving teams access to only their customer data
+	2. Uses custom service roles which can be precisely configured for specific data access
+	3. Maintains separation of concerns between different teams
+	4. Provides a secure way to integrate Amazon Bedrock with S3
+	5. Ensures compliance with the company's security policy
+	The other answers are not suitable/not relevant because:
+	B. Specifying customer names in requests doesn't provide proper access control and could lead to security vulnerabilities.
+	C. Redacting personal data doesn't solve the access control problem and modifying bucket policies alone isn't sufficient for controlling Bedrock's access to data.
+	D. Having one Bedrock role with full S3 access could lead to potential data leaks between teams, violating the security policy.
+	Resource URLs:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/security-iam.html
+
+Q67
+A medical company deployed a disease detection model on Amazon Bedrock. To comply with privacy policies, the company wants to prevent the model from including personal patient information in its responses. The company also wants to receive notification when policy violations occur.  
+Which solution meets these requirements?
+Options:
+A. Use Amazon Macie to scan the model's output for sensitive data and set up alerts for potential violations.
+B. Configure AWS CloudTrail to monitor the model's responses and create alerts for any detected personal information.
+C. Use Guardrails for Amazon Bedrock to filter content. Set up Amazon CloudWatch alarms for notification of policy violations.
+D. Implement Amazon SageMaker Model Monitor to detect data drift and receive alerts when model quality degrades.
+
+Correct Answer:
+	C. Use Guardrails for Amazon Bedrock to filter content. Set up Amazon CloudWatch alarms for notification of policy violations.
+	--- Domain 5: Security, Compliance, and Governance for AI Solutions, Task Statement 5.1: "Explain methods to secure AI systems." ---
+	Explanation:
+	Answer C is correct because:
+	1. Guardrails for Amazon Bedrock are specifically designed to filter and control content generated by foundation models.
+	2. It can prevent the inclusion of personal information in model responses, addressing the privacy concern.
+	3. Guardrails can be configured to enforce specific policies, such as excluding personal data.
+	4. Amazon CloudWatch alarms can be set up to monitor and notify about policy violations detected by Guardrails.
+	5. This solution provides both prevention (filtering content) and detection (notifications) capabilities.
+	The other answers are not suitable/not relevant because:
+	A. Amazon Macie is designed for discovering and protecting sensitive data in S3 buckets, not for real-time filtering of model outputs.
+	B. AWS CloudTrail is for logging API calls and account activity, not for content filtering or analyzing model responses.
+	D. Amazon SageMaker Model Monitor is used for detecting data drift and model quality issues, not for filtering sensitive information or enforcing privacy policies.
+	Resource URLs:
+	https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html
+
+
