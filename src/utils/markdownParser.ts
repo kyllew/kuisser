@@ -228,40 +228,51 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
   }
 
   // After processing all sections, check for missing questions
-  console.log('\n=== Question Coverage Analysis ===');
+  console.log('\n=== Question Coverage Summary ===');
   let totalExpected = 0;
   let totalFound = 0;
   let missingQuestions: number[] = [];
 
+  // First, count all questions we actually found in the markdown
+  const allFoundQuestions = new Set<number>();
+  sections.forEach(section => {
+    const questionNumberMatch = section.trim().match(/^Q(\d+)/);
+    if (questionNumberMatch) {
+      allFoundQuestions.add(parseInt(questionNumberMatch[1]));
+    }
+  });
+
+  // Then check against our expected ranges
   expectedRanges.forEach(range => {
     for (let num = range.start; num <= range.end; num++) {
       totalExpected++;
-      if (!foundQuestionNumbers.has(num)) {
-        missingQuestions.push(num);
-        console.log(`\nDetailed analysis for missing Q${num}:`);
-        // Check if the question exists in the markdown
-        const questionExists = sections.some(section => section.trim().startsWith(`Q${num}`));
-        console.log(`- Question exists in markdown: ${questionExists}`);
-        if (questionExists) {
-          const questionSection = sections.find(section => section.trim().startsWith(`Q${num}`));
-          console.log(`- Question section preview: ${questionSection?.substring(0, 200)}...`);
-        }
-      } else {
+      if (allFoundQuestions.has(num)) {
         totalFound++;
+      } else {
+        missingQuestions.push(num);
       }
     }
   });
 
   console.log(`Total expected questions: ${totalExpected}`);
-  console.log(`Total found questions: ${totalFound}`);
+  console.log(`Total questions found in markdown: ${allFoundQuestions.size}`);
+  console.log(`Total successfully loaded questions: ${questions.length}`);
+  console.log(`Missing questions: ${missingQuestions.length}`);
   
   if (missingQuestions.length > 0) {
-    console.log('\nMissing questions:');
-    missingQuestions.forEach(num => {
-      console.log(`- Q${num}`);
-    });
-  } else {
-    console.log('\nAll expected questions were found!');
+    console.log('Missing question ranges:', 
+      missingQuestions.reduce((ranges, num) => {
+        const lastRange = ranges[ranges.length - 1];
+        if (lastRange && lastRange.end === num - 1) {
+          lastRange.end = num;
+        } else {
+          ranges.push({ start: num, end: num });
+        }
+        return ranges;
+      }, [] as { start: number; end: number }[])
+      .map(range => range.start === range.end ? `Q${range.start}` : `Q${range.start}-Q${range.end}`)
+      .join(', ')
+    );
   }
 
   if (skippedQuestions.length > 0) {

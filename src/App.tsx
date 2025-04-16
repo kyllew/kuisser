@@ -96,51 +96,91 @@ export default function App() {
   useEffect(() => {
     if (!isAuthenticated) return;
 
-    if (selectedFile.value === 'all') {
-      // Load all questions from all files
-      console.log('Loading all questions...');
+    const loadQuestions = async () => {
       setError(null);
-
-      const loadQuestions = async () => {
-        setError(null);
-        try {
+      try {
+        if (selectedFile.value === 'all') {
+          // Load all questions from all files
+          console.log('Loading all questions...');
           const allQuestions: Question[] = [];
           let totalQuestions = 0;
+          const loadedQuestionNumbers = new Set<number>();
+
+          // Load questions from each file sequentially
           for (const file of DOMAIN_FILES) {
-            console.log(`Loading questions from ${file.value}...`);
-            const response = await fetch(`/${file.value}`);
-            const text = await response.text();
-            const questions = parseMarkdownQuiz(text);
-            console.log(`Loaded ${questions.length} questions from ${file.value}`);
-            totalQuestions += questions.length;
-            allQuestions.push(...questions);
+            try {
+              console.log(`Loading questions from ${file.value}...`);
+              const response = await fetch(`/${file.value}`);
+              if (!response.ok) {
+                throw new Error(`Failed to load ${file.value}: ${response.statusText}`);
+              }
+              const text = await response.text();
+              const questions = parseMarkdownQuiz(text);
+              console.log(`Loaded ${questions.length} questions from ${file.value}`);
+              
+              // Track which question numbers were loaded
+              const questionNumbers = text.match(/Q(\d+)/g)?.map(match => parseInt(match.replace('Q', ''))) || [];
+              questionNumbers.forEach(qNum => loadedQuestionNumbers.add(qNum));
+              
+              totalQuestions += questions.length;
+              allQuestions.push(...questions);
+            } catch (error) {
+              console.error(`Error loading ${file.value}:`, error);
+              setError(`Failed to load ${file.value}: ${error instanceof Error ? error.message : 'Unknown error'}`);
+            }
           }
-          console.log(`Total questions loaded: ${totalQuestions}`);
+
+          // Find missing question numbers
+          const missingQuestions: number[] = [];
+          for (let i = 1; i <= 155; i++) {
+            if (!loadedQuestionNumbers.has(i)) {
+              missingQuestions.push(i);
+            }
+          }
+
+          console.log('=== Question Loading Summary ===');
+          console.log(`Total questions successfully loaded: ${totalQuestions}`);
+          console.log(`Missing questions count: ${missingQuestions.length}`);
+          console.log('Missing question numbers:', missingQuestions.map(q => `Q${q}`).join(', '));
+          
           setQuestions(allQuestions);
-        } catch (error) {
-          console.error('Error loading questions:', error);
-          setError(error instanceof Error ? error.message : 'Failed to load questions');
-        }
-      };
-
-      loadQuestions();
-    } else {
-      // Load questions from the selected file
-      console.log('Loading questions from:', selectedFile.value);
-      setError(null);
-
-      fetch(`/${selectedFile.value}`)
-        .then(response => response.text())
-        .then(text => {
+        } else {
+          // Load questions from the selected file
+          console.log('Loading questions from:', selectedFile.value);
+          const response = await fetch(`/${selectedFile.value}`);
+          if (!response.ok) {
+            throw new Error(`Failed to load ${selectedFile.value}: ${response.statusText}`);
+          }
+          const text = await response.text();
           const questions = parseMarkdownQuiz(text);
-          console.log('Questions loaded:', questions.length);
+          
+          // Track loaded question numbers for single file
+          const loadedQuestionNumbers = new Set<number>();
+          const questionNumbers = text.match(/Q(\d+)/g)?.map(match => parseInt(match.replace('Q', ''))) || [];
+          questionNumbers.forEach(qNum => loadedQuestionNumbers.add(qNum));
+
+          // Find missing question numbers
+          const missingQuestions: number[] = [];
+          for (let i = 1; i <= 155; i++) {
+            if (!loadedQuestionNumbers.has(i)) {
+              missingQuestions.push(i);
+            }
+          }
+
+          console.log('=== Question Loading Summary ===');
+          console.log(`Questions loaded from ${selectedFile.value}: ${questions.length}`);
+          console.log(`Missing questions count: ${missingQuestions.length}`);
+          console.log('Missing question numbers:', missingQuestions.map(q => `Q${q}`).join(', '));
+          
           setQuestions(questions);
-        })
-        .catch(err => {
-          console.error('Error loading questions:', err);
-          setError('Failed to load questions: ' + err.message);
-        });
-    }
+        }
+      } catch (error) {
+        console.error('Error loading questions:', error);
+        setError(error instanceof Error ? error.message : 'Failed to load questions');
+      }
+    };
+
+    loadQuestions();
   }, [selectedFile, isAuthenticated]);
 
   const handleFileSelect = (event: any) => {

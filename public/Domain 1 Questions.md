@@ -947,8 +947,8 @@ Correct Answer:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality.html
 	https://docs.aws.amazon.com/machine-learning/latest/dg/evaluating-model-performance.html
 
- Q62
- A startup company has project requirement to build an ML model to analyze archived data. The company must perform inference on large datasets that are multiple GBs in size. The company does not required to access the model predictions immediately.  
+Q62
+A startup company has project requirement to build an ML model to analyze archived data. The company must perform inference on large datasets that are multiple GBs in size. The company does not required to access the model predictions immediately.  
 Which Amazon SageMaker inference option will meet these requirements?
 Options:
 A. Batch transform
