@@ -21,6 +21,7 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
 
   // Keep track of found question numbers
   const foundQuestionNumbers = new Set<number>();
+  const loadedQuestionNumbers = new Set<number>();
 
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i].trim();
@@ -202,6 +203,7 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
       // Convert explanation lines to HTML, preserving the formatting
       question.explanation = marked.parse(explanationLines.join('\n'), { async: false }) as string;
       questions.push(question);
+      loadedQuestionNumbers.add(questionNumber);
       console.log(`Successfully added Q${questionNumber} with ${question.options.length} options and ${question.answer.length} answers`);
     } else {
       const reasons = [];
@@ -229,50 +231,20 @@ export function parseMarkdownQuiz(markdown: string): QuizQuestion[] {
 
   // After processing all sections, check for missing questions
   console.log('\n=== Question Coverage Summary ===');
-  let totalExpected = 0;
-  let totalFound = 0;
-  let missingQuestions: number[] = [];
-
-  // First, count all questions we actually found in the markdown
-  const allFoundQuestions = new Set<number>();
-  sections.forEach(section => {
-    const questionNumberMatch = section.trim().match(/^Q(\d+)/);
-    if (questionNumberMatch) {
-      allFoundQuestions.add(parseInt(questionNumberMatch[1]));
+  const missingQuestions: number[] = [];
+  for (let i = 1; i <= 155; i++) {
+    if (!loadedQuestionNumbers.has(i)) {
+      missingQuestions.push(i);
     }
-  });
+  }
 
-  // Then check against our expected ranges
-  expectedRanges.forEach(range => {
-    for (let num = range.start; num <= range.end; num++) {
-      totalExpected++;
-      if (allFoundQuestions.has(num)) {
-        totalFound++;
-      } else {
-        missingQuestions.push(num);
-      }
-    }
-  });
-
-  console.log(`Total expected questions: ${totalExpected}`);
-  console.log(`Total questions found in markdown: ${allFoundQuestions.size}`);
+  console.log(`Total expected questions: 155`);
+  console.log(`Total questions found in markdown: ${foundQuestionNumbers.size}`);
   console.log(`Total successfully loaded questions: ${questions.length}`);
   console.log(`Missing questions: ${missingQuestions.length}`);
   
   if (missingQuestions.length > 0) {
-    console.log('Missing question ranges:', 
-      missingQuestions.reduce((ranges, num) => {
-        const lastRange = ranges[ranges.length - 1];
-        if (lastRange && lastRange.end === num - 1) {
-          lastRange.end = num;
-        } else {
-          ranges.push({ start: num, end: num });
-        }
-        return ranges;
-      }, [] as { start: number; end: number }[])
-      .map(range => range.start === range.end ? `Q${range.start}` : `Q${range.start}-Q${range.end}`)
-      .join(', ')
-    );
+    console.log('Missing question numbers:', missingQuestions.map(q => `Q${q}`).join(', '));
   }
 
   if (skippedQuestions.length > 0) {
