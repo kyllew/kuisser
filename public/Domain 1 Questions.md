@@ -1,9 +1,9 @@
 Q3 
-A healthcare company wants to classify human genes into 25 categories based on gene characteristics. The company requirement is to have ML algorithm to document how the inner mechanism of the model affects the output. Which ML algorithm meets these requirements?
+A healthcare company needs to classify human genes into 25 distinct categories based on their genetic characteristics. The company requires a machine learning algorithm that provides clear visibility into how classification decisions are made, allowing them to document the model's internal decision-making process. Which ML algorithm best satisfies these requirements?
 Options :
 A. Decision trees
 B. Linear regression
-C. Logistic regression
+C. K-means clustering
 D. Neural networks		
 
 Correct Answer :
@@ -15,7 +15,7 @@ Correct Answer :
 		3. Interpretability: Unlike neural networks (which are "black box" models) or linear/logistic regression (which are better for binary classification or continuous outputs), decision trees provide clear decision paths that can be followed from root to leaf, making it easy to explain how the model arrived at its classification.
 		The other options are less suitable because:
 		- Linear regression (B) is for predicting continuous numerical values
-		- Logistic regression (C) is primarily for binary classification
+		- K-means clustering (C) is an unsupervised learning algorithm that groups similar data points together based on feature similarity, not appropriate for a supervised classification task where specific gene categories are already defined
 		- Examples
 			- Heart disease prediction
 			- Fraud detection
@@ -25,12 +25,12 @@ Correct Answer :
 			https://d1.awsstatic.com/events/reinvent/2020/Choose_the_right_machine_learning_algorithm_in_Amazon_SageMaker_AIM308.pdf
 
 Q4
-A bio-technology startup has built an image classification model. The model will be used to predict plant diseases from photos of plant leaves. The company wants to evaluate how many images the model classified correctly.  Which evaluation metric should the company use to measure the model's performance?
+A bio-technology startup has developed an image classification model designed to identify plant diseases from photographs of plant leaves. The company needs to evaluate the percentage of leaf images that the model has classified correctly and accurately. Which evaluation metric is most appropriate for measuring this model's performance?
 Options :
 A. R-squared score
 B. Accuracy 
 C. Root mean squared error (RMSE)
-D. Learning rate
+D. Mean Average Precision (MAP)
 
 Correct Answer :
 	B. Accuracy 
@@ -44,19 +44,19 @@ Correct Answer :
 		Other options are incorrect because:
 			- A: R-squared is for regression problems, measuring variance explanation
 			- C: RMSE is for regression problems, measuring prediction error magnitude
-			- D: Learning rate is a training hyperparameter, not an evaluation metric
+			- D: Mean Average Precision (MAP) is primarily used for ranking problems and information retrieval systems, not for basic classification accuracy measurement in this plant disease identification context
 		Resource URL:
 			https://docs.aws.amazon.com/machine-learning/latest/dg/evaluating-model-accuracy.html
 			https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality.html
 
 
 Q6
-Example company uses Amazon SageMaker for its ML pipeline for their production application. The application will process large input data sizes more than 500 MB and up to 1 GB and processing times up to 1 hour. The company stated that it needs near real-time latency.  Which SageMaker inference option can be proposed to achieve this requirements?
+A healthcare company uses Amazon SageMaker in its machine learning pipeline for clinical applications. Their system needs to process medical images with sizes between 500 MB and 1 GB, and inference processing may take up to 1 hour. The company requires predictions to be delivered with near real-time latency. Which SageMaker inference option is most appropriate for these requirements?
 Options :
 A. Real-time inference
 B. Serverless inference
 C. Asynchronous inference
-D. Batch transform
+D. SageMaker Edge Deployment
 
 Correct Answer :
 	C. Asynchronous inference
@@ -71,7 +71,7 @@ Correct Answer :
 		Other options are incorrect because:
 		- A: Real-time inference has payload limitations and is for immediate responses
 		- B: Serverless inference has limits on payload size and processing time
-		- D: Batch transform is for offline processing, not near real-time requirements
+		- D: SageMaker Edge Deployment is for running models on edge devices like cameras or sensors, not for handling large processing jobs with near real-time requirements in a cloud environment
 		SageMaker Asynchronous Inference is specifically designed for:
 		- Large payload sizes (up to 1GB)
 		- Long processing times
@@ -83,12 +83,12 @@ Correct Answer :
 		
 
 Q7
-A company is using domain-specific models. The objectives for the project is to avoid creating new models from the beginning. The company instead wants to adapt pre-trained models to create models for new, related tasks.  Which ML strategy meets these requirements?
+A company is developing domain-specific AI solutions. Rather than building new models from scratch, they want to leverage knowledge from existing pre-trained models and adapt them for new related tasks. Which machine learning approach best aligns with this strategy?
 Options :
 A. Increase the number of epochs.
 B. Use transfer learning.
 C. Decrease the number of epochs.
-D. Use unsupervised learning.
+D. Use distributed training.
 	
 Correct Answer : 
 	B. Use transfer learning
@@ -103,19 +103,19 @@ Correct Answer :
 		Other options are incorrect because:
 		- A: Increasing epochs just extends training time, doesn't adapt existing knowledge
 		- C: Decreasing epochs reduces training time but doesn't transfer knowledge
-		- D: Unsupervised learning is a different learning approach, not related to model adaptation
+		- D: Distributed training is an approach to accelerate model training by utilizing multiple computing resources in parallel, but doesn't address the requirement of leveraging pre-trained models
 		Resource URL:
 			https://aws.amazon.com/what-is/transfer-learning/
 
 
 Q11
-A company wants to build an ML model by using Amazon SageMaker. The company needs to share and manage variables for model development across multiple teams.  
-Which SageMaker feature meets these requirements?
+A company is developing an ML model using Amazon SageMaker. The AI team needs a solution that allows them to store, share, and manage feature variables across multiple development teams working on the project.
+Which SageMaker feature best addresses these requirements?
 Options :
 A. Amazon SageMaker Feature Store
 B. Amazon SageMaker Data Wrangler
 C. Amazon SageMaker Clarify
-D. Amazon SageMaker Model Cards
+D. Amazon SageMaker Experiments
 
 Correct Answer : 
 	A. Amazon SageMaker Feature Store
@@ -130,18 +130,18 @@ Correct Answer :
 		Other options are incorrect because:
 		- B: Data Wrangler is for data preparation and transformation, not feature sharing
 		- C: Clarify is for bias detection and model explainability
-		- D: Model Cards are for model documentation and governance
+		- D: SageMaker Experiments is for tracking, comparing, and evaluating machine learning experiments and model versions, not for storing and sharing feature variables
 		Resource URL:
 		https://docs.aws.amazon.com/sagemaker/latest/dg/feature-store.html
 
 
 Q14
-Startup company wants to develop an educational game where users answer questions such as the following: "A box contains 8 red, 4 green, and 3 yellow pencils. What is the probability of choosing a green pencil from the box?"  Which solution meets these requirements with the LEAST operational overhead?
+A startup company is creating an educational application where users solve probability-based questions like: "A box contains 8 red, 4 green, and 3 yellow pencils. What is the probability of choosing a green pencil from the box?"  Which approach fulfills these requirements with MINIMAL operational overhead?
 Options :
 A. Use supervised learning with regression model that will predict probability.
 B. Use reinforcement learning to train a model to return the probability.
 C. Use code that will calculate probability by using simple rules and computations.
-D. Use unsupervised learning to create a model that will estimate probability density.	
+D. Use natural language processing to interpret the question and generate answers.
 
 Correct Answer : 
 	C. Use code that will calculate probability by using simple rules and computations.
@@ -167,20 +167,17 @@ Correct Answer :
 			- Designed for decision-making through trial and error
 			- Not suitable for fixed mathematical calculations
 			- High complexity and resource usage
-			D. Unsupervised Learning
-			- Used for finding patterns in unlabeled data
-			- Not appropriate for simple probability calculations
-			- Adds unnecessary complexity
+			D. Natural Language Processing - While NLP could help interpret different question formats, it would require substantial infrastructure, training data, and maintenance compared to simple computational formulas that can handle standardized questions
 		Resource URLs:
 			https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html
 
 Q15
-Which metric measures the runtime efficiency of operating AI models?
+Which metric evaluates the operational performance efficiency of deployed AI models?
 Options :
 A. Customer satisfaction score (CSAT)
 B. Training time for each epoch
 C. Average response time
-D. Number of training instances
+D. Model convergence rate
 
 Correct Answer :
 	C. Average response time
@@ -195,17 +192,17 @@ Correct Answer :
 		Other options are incorrect because:
 		- A: CSAT measures user satisfaction, not runtime efficiency
 		- B: Training time per epoch is a training metric, not operational efficiency
-		- D: Number of training instances relates to training capacity, not runtime performance
+		- D: Model convergence rate relates to how quickly a model reaches optimal parameters during training, not to its performance in production environments
 		Resource URL:
 			https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality.html
 
 
 Q16
-A company is planning to build a support and contact center application. The application also will be able to gain insights from customer conversations. The company wants to analyze and extract key information from the audio of the customer calls. Which solution meets these requirements?
+A company is developing a customer service center application. The system needs to extract valuable insights from customer conversations. The company requires a solution to analyze audio recordings from customer calls and extract key information. Which AWS service best addresses these requirements?
 Options :
 A. Build a conversational chatbot by using Amazon Lex.
 B. Transcribe call recordings by using Amazon Transcribe.
-C. Extract information from call recordings by using Amazon Poly.
+C. Extract information from call recordings by using Amazon Textract.
 D. Create classification labels by using natural language processing Amazon Comprehend.	
 
 Correct Answer :
@@ -220,7 +217,7 @@ Correct Answer :
 		The solution typically involves using Amazon Transcribe first to convert audio to text, and then potentially using Amazon Comprehend for further text analysis of the transcripts. However, the question specifically asks about analyzing audio content, for which Transcribe is the primary tool needed.
 		Other options are incorrect because:
 		- A: Amazon Lex is for building conversational interfaces (chatbots), not for analyzing existing conversations
-		- C: SageMaker Model Monitor is for monitoring ML model performance, not for audio analysis
+		- C: Amazon Textract is designed for extracting text from documents and images, not for processing audio recordings
 		- D: Amazon Comprehend is for natural language processing of text, but cannot process audio directly
 		Resource URL:
 			https://aws.amazon.com/transcribe/
@@ -228,12 +225,12 @@ Correct Answer :
 		
 
 Q17
-A advertisement company has hundreds of terabytes unlabeled customer data to use for some product campaign. The company wants to classify its customers into tiers to advertise and promote the company's products. Which methodology should the company use to meet these requirements?
+A marketing company possesses hundreds of terabytes of unlabeled customer interaction data they want to leverage for targeted product promotions. The company needs to segment its customers into distinct tiers to optimize advertising campaigns for different products. Which machine learning approach should the company implement to address these requirements?
 Options :
 A. Supervised learning
 B. Unsupervised learning
 C. Reinforcement learning
-D. Reinforcement learning from human feedback (RLHF)
+D. Semi-supervised learning
 
 Correct Answer :
 	B. Unsupervised learning
@@ -246,19 +243,19 @@ Correct Answer :
 		Other options are incorrect because:
 		- A: Supervised learning requires labeled data for training, which is not available here
 		- C: Reinforcement learning is for training agents through reward-based feedback systems
-		- D: RLHF is specifically for fine-tuning models based on human feedback, not for customer segmentation
+		- D: Semi-supervised learning requires some labeled data to guide the learning process, which isn't mentioned as being available in this scenario
 		Resource URL:
 		https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/
 
 
 
 Q20
-A company wants to use AI to protect its application from web attack network threats. The AI solution needs to check if an IP address is coming from a suspicious source. Which solution that will satisfy requirements?
+A company wants to use AI to safeguard its web application from network-based security threats. The AI solution must be able to determine if incoming traffic from an IP address might be malicious. Which solution would fulfill these requirements?
 Options :
 A. Create a speech recognition system to detect bad IP.
 B. Build a natural language processing (NLP) named entity recognition system.
 C. Develop an anomaly detection system.
-D. Create a fraud forecasting system.
+D. Create a recommendation engine system.
 Correct Answer :
 	C. Develop an anomaly detection system.
 	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.2: "Identify practical use cases for AI" ---
@@ -271,21 +268,21 @@ Correct Answer :
 		Other options are incorrect because:
 		- A: Speech recognition is for converting spoken words to text, not relevant for IP address analysis
 		- B: NLP named entity recognition is for identifying entities in text, not for security threat detection
-		- D: Fraud forecasting is predictive in nature and typically used for financial transactions, not real-time IP threat detection
+		- D: A recommendation engine is designed to suggest relevant items to users based on past behavior, not for detecting malicious network activity
 		Resource URL:
 		https://aws.amazon.com/blogs/machine-learning/detect-suspicious-ip-addresses-with-the-amazon-sagemaker-ip-insights-algorithm/
 		
 
 
 Q27
-A company has a project to develop ML model for image classification. The company wants to deploy the model to production so that a web application can use the model.  
-The company needs to implement a solution to host the model and serve predictions without managing any of the underlying infrastructure.  
-Which solution will meet these requirements?
+A company is developing a machine learning model for image classification. Once completed, they plan to deploy the model to production for integration with a web application.
+The company needs a solution that can host the ML model and serve predictions without requiring them to manage any underlying infrastructure.
+Which solution best meets these requirements?
 Options :
 A. Use Amazon SageMaker Serverless Inference to deploy the model.
 B. Use Amazon CloudFront to deploy the model.
 C. Use Amazon API Gateway to host the model and serve predictions.
-D. Use AWS Batch to host the model and serve predictions.
+D. Use Amazon ElastiCache to host the model and serve predictions.
 
 Correct Answer: 
 	A. Use Amazon SageMaker Serverless Inference to deploy the model.
@@ -300,19 +297,19 @@ Correct Answer:
 	Other options are incorrect because:
 	- B: CloudFront is a content delivery network, not for model deployment
 	- C: API Gateway manages APIs but doesn't host ML models
-	- D: AWS Batch is for batch processing, not real-time model serving
+	- D: Amazon ElastiCache is a caching service for improving application performance, not designed for hosting or serving machine learning models
 	Resource URL:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html
 
 
 Q31
-An AI engineer has a collection of animal photos placed in database. The engineer wants to automatically identify and categorize the animals in the photos without manual human effort.  
-Which strategy meets these requirements?
+An AI engineer maintains a database containing various wildlife photographs. The engineer aims to create an automated system that can identify different animal species in these images without requiring manual classification.  
+Which technique is most appropriate for this task?
 Options:
 A. Object detection
 B. Anomaly detection
 C. Named entity recognition
-D. Inpainting
+D. Sentiment analysis
 
 Correct Answer:
 	A. Object detection
@@ -327,14 +324,13 @@ Correct Answer:
 		Other options are incorrect because:
 		- B: Anomaly detection finds unusual patterns, not suitable for classification
 		- C: Named entity recognition is for text analysis, not image processing
-		- D: Inpainting is for filling in missing or damaged parts of images
-		Resource URL:
+		- D: Sentiment analysis evaluates emotional tone in text data and has no application for image-based animal identification
 		https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html
 		https://docs.aws.amazon.com/sagemaker/latest/dg/algo-object-detection-tech-notes.html
 
 
 Q36
-A company built a deep learning model for object detection. They wanted to detect the shape of the object at initial phase. The AI team deployed the model to production. Which AI process occurs when the model analyzes a new image to identify objects?
+A company developed a deep learning model for object shape recognition. After the AI team deployed the model to the production environment, users began submitting new images for analysis. Which AI process is taking place when the model examines these new images to recognize object shapes?
 Options :
 A. Training
 B. Inference
@@ -354,16 +350,16 @@ Correct Answer:
 	Other options are incorrect because:
 	- A: Training is the process of teaching the model, not using it
 	- C: Model deployment is setting up the model for use, not using it
-	- D: Bias correction is part of model improvement, not prediction
+	- D: Feature extraction is a component of the model's processing pipeline but not the overall process of generating predictions from new inputs
 	Resource URL:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html
 
 Q44
-A company is developing a new model to predict the prices of specific items. The model performed well on the training dataset. When the company deployed the model to production, the model's performance decreased significantly.  
-What should the company do to mitigate this problem?
+A company has built a prediction model for retail product pricing. The model demonstrated high accuracy in the test environment, but after deployment to production, its performance deteriorated considerably.  
+What strategy should the company implement to resolve this problem?
 Options:
 A. Reduce the volume of data that is used in training.
-B. Add hyperparameters to the model.
+B. Implement cross-validation techniques.
 C. Increase the volume of data that is used in training.
 D. Increase the model training time.
 
@@ -379,18 +375,18 @@ Correct Answer:
 		5. Reduces the gap between training and production performance
 		Other options are incorrect because:
 		- A: Reducing training data would likely worsen the problem
-		- B: Adding hyperparameters doesn't address generalization
+		- B: While cross-validation is useful for model evaluation, it doesn't directly address the fundamental issue of limited training data diversity needed for production scenarios
 		- D: Increasing training time alone doesn't improve generalization
 	Resource URL:
 	https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html
 
 Q103
-An AI engineer involved in project to predict the classification of flowers based on petal length, petal width, sepal length, and sepal width.  
-Which algorithm meets these requirements?
+A data scientist is working on a solution to categorize flower species using measurements of petal length, petal width, sepal length, and sepal width.  
+Which algorithm is most appropriate for this requirement?
 Options:
 A. K-nearest neighbors (k-NN)
 B. K-mean
-C. Autoregressive Integrated Moving Average (ARIMA)
+C. Principal Component Analysis (PCA)
 D. Linear regression
 
 Correct Answer:
@@ -409,9 +405,7 @@ Correct Answer:
 		- While it could group similar flowers, it doesn't use labeled data for classification
 		- Not ideal for predictive classification tasks where classes are known
 		C. Autoregressive Integrated Moving Average (ARIMA)
-		- This is a time series forecasting algorithm
-		- Not suitable for classification problems
-		- Requires temporal data, which is not present in this case
+		- PCA is a dimensionality reduction technique rather than a classification algorithm, so it cannot directly predict flower species from measurements
 		D. Linear regression
 		- Used for predicting continuous numerical values
 		- Not appropriate for classification tasks
@@ -423,13 +417,14 @@ Correct Answer:
 		https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html
 
 Q109
-A company is developing an ML model to predict customer churn. The model performs well on the training dataset but does not accurately predict churn for new data. 
-Which solution will resolve this issue?
+A company is developing a machine learning model to identify potential customer turnover. The model shows excellent accuracy with the training data but fails to correctly predict churn patterns in new data.
+
+Which approach would address this problem?
 Options:
 A. Decrease the regularization parameter to increase model complexity.
 B. Increase the regularization parameter to decrease model complexity.
 C. Add more features to the input data.
-D. Train the model for more epochs.
+D. Remove all preprocessing steps from the data pipeline.
 
 Let me help classify and explain this question:
 
@@ -445,7 +440,7 @@ Correct Answer:
 		The other answers are not suitable because:
 		A. Decreasing regularization would make overfitting worse by allowing the model to become more complex
 		C. Adding more features could potentially increase overfitting if the features aren't relevant
-		D. Training for more epochs would likely worsen overfitting as the model would learn the training data even more precisely
+		D. Removing preprocessing steps would likely reduce model performance as proper data preprocessing is essential for effective machine learning models
 	Resource URL:
 	https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html
 
@@ -477,38 +472,37 @@ Correct Answer:
 	https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/best-practices-by-ml-lifecycle-phase.html
 
 Q116
-A company needs to train an ML model to classify images of different types of animals. The company has a large dataset of labeled images and will not label more data.  
-Which type of learning should the company use to train the model?
+A business must develop an ML model to categorize images containing various animal species. The business possesses an extensive dataset of pre-labeled images and doesn't intend to perform additional labeling.  
+Which learning approach should the business implement for model training?
 Options:
 A. Supervised learning
 B. Unsupervised learning
 C. Reinforcement learning
-D. Active learning
+D. Transfer learning
 
 Correct Answer: 
 	A. Supervised learning
 	--- Domain 1: Fundamentals of AI and ML, Task Statement 1.1: "Explain basic AI concepts and terminologies." ---
 	Explanation: 
 		Answer A is correct because:
-		- The company has labeled images (labeled data)
+		- The business has labeled images (labeled data)
 		- The task is classification, which is a typical supervised learning problem
 		- Supervised learning is used when you have input data (images) and corresponding output labels (animal types)
 		- The dataset is already labeled and no more labeling is planned, making supervised learning the most appropriate approach
 		The other answers are not suitable because:
 		B. Unsupervised learning - Used when data is unlabeled and the goal is to find patterns/clusters
 		C. Reinforcement learning - Used for learning through interaction with an environment and receiving rewards/penalties
-		D. Active learning - Used when you want to selectively label more data to improve model performance, but the question states no more labeling will be done
+		D. Transfer learning - While useful for image tasks, it's a technique for leveraging pre-trained models rather than a learning paradigm, and doesn't address the fundamental approach needed for the labeled dataset
 	Resource URL:
 	https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/
 
 Q117
-Which phase of the ML lifecycle determines compliance and regulatory requirements?
+At which phase of the ML lifecycle are compliance and regulatory constraints typically established?
 Options:
 A. Feature engineering
-B. Model training
+B. Model evaluation
 C. Data collection
 D. Business goal identification
-Let me help classify and explain this question:
 
 Correct Answer: 
 	D. Business goal identification
@@ -524,18 +518,18 @@ Correct Answer:
 		  * Monitoring requirements
 		The other answers are not suitable because:
 		A. Feature engineering - This is a technical phase focused on creating model inputs, too late for determining compliance requirements
-		B. Model training - This is an implementation phase that should follow already-established compliance guidelines
-		C. Data collection - While compliance affects data collection, the requirements should be identified before starting data collection - Data processing phase
+		B. Model evaluation - This phase focuses on assessing model performance against metrics, not establishing regulatory requirements
+		C. Data collection - While compliance affects data collection, the requirements should be identified before starting data collection
 	Resource URL:
 	https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/best-practices-by-ml-lifecycle-phase.html
 
 Q118
-A F&B sector company wants to develop an ML model to help decrease daily food waste and increase sales revenue. The company needs to continuously improve the model's accuracy.  
-Which solution meets these requirements?
+A F&B sector enterprise needs to develop an ML model to reduce daily food wastage and boost sales performance. The enterprise requires ongoing model accuracy improvements.  
+Which solution satisfies these requirements?
 Options:
 A. Use Amazon SageMaker and iterate with newer data.
 B. Use Amazon Personalize and iterate with historical data.
-C. Use Amazon CloudWatch to analyze customer orders.
+C. Use Amazon Athena to analyze customer orders.
 D. Use Amazon Rekognition to optimize the model.
 
 Correct Answer: 
@@ -549,15 +543,15 @@ Correct Answer:
 	- The solution addresses both the need for prediction (food waste/sales) and continuous improvement
 	The other answers are not suitable because:
 	B. Amazon Personalize - This is specifically for recommendation systems, not for general prediction problems like food waste
-	C. Amazon CloudWatch - This is a monitoring service, not an ML development platform
+	C. Amazon Athena - This is a serverless query service for analyzing data in S3, not an ML development platform for building predictive models
 	D. Amazon Rekognition - This is specifically for image and video analysis, not for business prediction problems
 	Resource URL:
 	https://aws.amazon.com/blogs/machine-learning/architect-and-build-the-full-machine-learning-lifecycle-with-amazon-sagemaker/
 
 Q119
-A company has developed an ML model to predict real estate sale prices. The company wants to deploy the model to make predictions without managing servers or infrastructure.  
-  
-Which solution meets these requirements?
+A company has built an ML model for predicting property resale values. The company needs to deploy the model for inference without managing any infrastructure.
+
+Which solution best meets these requirements?
 Options:
 A. Deploy the model on an Amazon EC2 instance.
 B. Deploy the model on an Amazon Elastic Kubernetes Service (Amazon EKS) cluster.
@@ -582,14 +576,12 @@ Correct Answer:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html
 
 Q121
-A manufacturing company uses AI to inspect the quality of products and find any damages or defects.    
-Which type of AI application is the company using?
+A manufacturing enterprise implements AI to assess product quality and identify any flaws or defects. Which category of AI technology is the enterprise utilizing?
 Options:
 A. Recommendation system
 B. Natural language processing (NLP)
 C. Computer vision
-D. Image processing
-
+D. Anomaly detection
 
 Correct Answer: 
 	C. Computer vision
@@ -604,18 +596,18 @@ Correct Answer:
 		The other answers are not suitable because:
 		A. Recommendation system - Used for suggesting items/content, not for visual inspection
 		B. Natural language processing (NLP) - Deals with text and speech, not visual inspection
-		D. Image processing - While part of computer vision, it's too narrow and refers to manipulating images rather than understanding their content
+		D. Anomaly detection - While related to identifying unusual patterns, this is a technique used across multiple AI domains and isn't specific to visual inspection of products
 	Resource URL:
 		https://aws.amazon.com/what-is/computer-vision/
 
 
 Q122
-Some retail company wants to create an ML model to predict customer satisfaction. The company needs fully automated model tuning.  
+Some retail company wants to create and develop ML model to predict customer satisfaction. The company needs to speed up the tuning by fully automating the model.  
 Which AWS service meets these requirements?
 Options:
 A. Amazon Personalize
 B. Amazon SageMaker
-C. Amazon Athena
+C. Amazon QuickSight
 D. Amazon Comprehend
 
 Correct Answer: 
@@ -630,19 +622,19 @@ Correct Answer:
 		- Offers built-in hyperparameter optimization (HPO) functionality
 		The other answers are not suitable because:
 		A. Amazon Personalize - Specifically for recommendation systems, not general prediction tasks
-		C. Amazon Athena - This is a query service for analyzing data in S3, not an ML service
+		C. Amazon QuickSight - This is a business intelligence and data visualization service that doesn't provide ML model development or automated tuning capabilities
 		D. Amazon Comprehend - This is specifically for natural language processing tasks
 	Resource URL:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning.html
 
 Q127
-An ecommerce company wants to improve search engine recommendations by customizing the results for each user of the company’s ecommerce platform.  
+An ecommerce company wants to enhance search engine functionality recommendations by customizing the results for each user of the company’s ecommerce platform.  
 Which AWS service meets these requirements?
 Options:
 A. Amazon Personalize
 B. Amazon Kendra
 C. Amazon Rekognition
-D. Amazon Transcribe
+D. Amazon Lex
 
 
 Correct Answer: 
@@ -658,18 +650,18 @@ Correct Answer:
 	The other answers are not suitable because:
 	B. Amazon Kendra - Enterprise search service, but doesn't provide personalized recommendations
 	C. Amazon Rekognition - For image and video analysis, not for search recommendations
-	D. Amazon Transcribe - For converting speech to text, not relevant for search recommendations
+	D. Amazon Lex - A service for building conversational interfaces using voice and text, not designed for personalizing search results based on user behavior in an e-commerce context
 	Resource URL:
 	https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html
 
 Q129
-A company needs to monitor the performance of its ML systems by using a highly scalable AWS service.  
-Which AWS service meets these requirements?
+A corporation requires performance tracking of its machine learning deployments using a highly scalable AWS offering.  
+Which AWS service satisfies these specifications?
 Options:
 A. Amazon CloudWatch
 B. AWS CloudTrail
 C. AWS Trusted Advisor
-D. AWS Config
+D. AWS Health Dashboard
 
 Correct Answer: 
 	A. Amazon CloudWatch
@@ -685,17 +677,16 @@ Correct Answer:
 	The other answers are not suitable because:
 	B. AWS CloudTrail - For logging API activity, not for performance monitoring
 	C. AWS Trusted Advisor - For optimization recommendations, not for performance monitoring
-	D. AWS Config - For resource configuration tracking, not for performance monitoring
-	Resource URL:
+	D. AWS Health Dashboard - Designed to provide visibility into the availability of AWS services and account-specific notifications, not specifically for monitoring ML system performance metrics
 	https://docs.aws.amazon.com/sagemaker/latest/dg/monitoring-cloudwatch.html
 
 
 Q132
-A company is building a mobile app for users who have a visual impairment. The app must be able to hear what users say and provide voice responses.  
-Which solution will meet these requirements?
+A business is developing a smartphone application for visually impaired individuals. The application needs to recognize spoken commands and communicate back with audible responses.  
+Which approach will best fulfill these requirements?
 Options:
 A. Use a deep learning neural network to perform speech recognition.
-B. Build ML models to search for patterns in numeric data.
+B. Build ML models to analyze textual sentiment patterns.
 C. Use generative AI summarization to generate human-like text.
 D. Build custom models for image classification and recognition.
 
@@ -710,7 +701,7 @@ Correct Answer:
 		- It's particularly suitable for accessibility applications
 		- Neural networks are proven effective for speech processing tasks
 		The other answers are not suitable because:
-		B. ML models for numeric data - Not relevant for speech processing requirements
+		B. ML models for textual sentiment patterns - This focuses on sentiment analysis rather than speech interaction, which doesn't address the core requirements of processing spoken commands and generating voice responses
 		C. Generative AI summarization - While it generates text, it doesn't address speech processing needs
 		D. Image classification models - Not relevant for speech-based interaction requirements
 	Resource URL:
@@ -760,13 +751,13 @@ Correct Answer:
 
 
 Q138
-A company wants to find groups for its customers based on the customers’ demographics and buying patterns.  
-Which algorithm should the company use to meet this requirement?
+A retail business needs to segment its clientele based on customer characteristics and purchasing behaviors.  
+Which algorithm would be most appropriate to address this requirement?
 Options :
 A. K-nearest neighbors (k-NN)
 B. K-means
 C. Decision tree
-D. Support vector machine
+D. Random forest
 
 Correct Answer: 
 	B. K-means
@@ -781,20 +772,18 @@ Correct Answer:
 		The other answers are not suitable because:
 		A. K-nearest neighbors (k-NN) - This is a supervised learning algorithm for classification, not for finding groups
 		C. Decision tree - This is a supervised learning algorithm for classification and regression
-		D. Support vector machine - This is a supervised learning algorithm for classification, not suitable for finding natural groups
+		D. Random forest - This is an ensemble supervised learning method used primarily for classification and regression tasks, not for discovering natural groupings in unlabeled data
 	Resource URL:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/k-means.html
 
 Q151
-A company wants to identify harmful language in the comments section of social media posts by using an ML model. The company will not use labeled data to train the model.  
-Which strategy should the company use to identify harmful language?
+A business needs to detect offensive text in the comments area of its social platform by implementing an ML solution. The business does not have access to labeled data for model training.  
+Which approach should the business adopt to identify inappropriate content?
 Options:
 A. Use Amazon Rekognition moderation.
 B. Use Amazon Comprehend toxicity detection.
 C. Use Amazon SageMaker built-in algorithms to train the model.
-D. Use Amazon Polly to monitor comments.
-
-Let me help classify and explain this question:
+D. Use Amazon Textract to analyze comments.
 
 Correct Answer: 
 	B. Use Amazon Comprehend toxicity detection
@@ -809,17 +798,17 @@ Correct Answer:
 		The other answers are not suitable because:
 		A. Amazon Rekognition - For image and video analysis, not text content
 		C. SageMaker built-in algorithms - Would require labeled training data
-		D. Amazon Polly - For text-to-speech conversion, not content moderation
+		D. Amazon Textract - Designed for extracting text and data from scanned documents, not for analyzing sentiment or detecting harmful content in text that's already digital
 	Resource URL:
 	https://docs.aws.amazon.com/comprehend/latest/dg/toxicity.html
 
 Q152
-A media company wants to analyze viewer behavior and demographics to recommend personalized content. The company wants to deploy a customized ML model in its production environment. The company also wants to observe if the model quality drifts over time.  
-Which AWS service or feature meets these requirements?
+A streaming service wants to examine audience viewing patterns and characteristics to suggest tailored programming. The company wants to implement a specially developed ML model in its live environment. The company also wants to track if the model effectiveness degrades with time.  
+Which AWS service or feature satisfies these requirements?
 Options:
 A. Amazon Rekognition
 B. Amazon SageMaker Clarify
-C. Amazon Comprehend
+C. Amazon Personalize
 D. Amazon SageMaker Model Monitor
 
 Correct Answer: 
@@ -835,19 +824,19 @@ Correct Answer:
 	The other answers are not suitable because:
 	A. Amazon Rekognition - For image and video analysis, not model monitoring
 	B. SageMaker Clarify - For bias detection and model explainability, not continuous monitoring
-	C. Amazon Comprehend - For natural language processing, not model monitoring
+	C. Amazon Personalize - Provides recommendation systems but lacks built-in capabilities for monitoring model quality degradation over time, which is the key requirement for detecting model drift
 	Resource URL:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html
 
 
 Q154
-A manufacturing company wants to create product descriptions in multiple languages.  
-Which AWS service will automate this task?
+A production company needs to generate product specifications in multiple languages.  
+Which AWS service will best automate this requirement?
 Options:
 A. Amazon Translate
 B. Amazon Transcribe
 C. Amazon Kendra
-D. Amazon Polly
+D. Amazon Comprehend
 
 Correct Answer: 
 	A. Amazon Translate
@@ -862,17 +851,17 @@ Correct Answer:
 	The other answers are not suitable because:
 	B. Amazon Transcribe - Converts speech to text, not for language translation
 	C. Amazon Kendra - Enterprise search service, not for translation
-	D. Amazon Polly - Text-to-speech service, not for translation
+	D. Amazon Comprehend - Natural language processing service for extracting insights and relationships from text, not designed for translating content between languages
 	Resource URL:
 	https://docs.aws.amazon.com/translate/latest/dg/what-is.html
 
 Q56
-A digital devices company wants to predict customer demand for memory hardware. The company does not have coding experience or knowledge of ML algorithms and needs to develop a data-driven predictive model. The company needs to perform analysis on internal data and external data.  
-Which solution will meet these requirements?
+A hardware manufacturing company wants to forecast consumer demand for storage components. The company lacks programming skills and machine learning expertise but needs to create a data-driven prediction model. The company needs to analyze both proprietary data and market data.  
+Which solution is most appropriate for these requirements?
 Options:
 A. Store the data in Amazon S3. Create ML models and demand forecast predictions by using Amazon SageMaker built-in algorithms that use the data from Amazon S3.
 B. Import the data into Amazon SageMaker Data Wrangler. Create ML models and demand forecast predictions by using SageMaker built-in algorithms.
-C. Import the data into Amazon SageMaker Data Wrangler. Build ML models and demand forecast predictions by using an Amazon Personalize Trending-Now recipe.
+C. Import the data into Amazon SageMaker Data Wrangler. Build ML models and demand forecast predictions by using an Amazon Forecast AutoPredictor.
 D. Import the data into Amazon SageMaker Canvas. Build ML models and demand forecast predictions by selecting the values in the data from SageMaker Canvas.
 
 Correct Answer:
@@ -887,18 +876,18 @@ Correct Answer:
 	The other answers are not suitable/not relevant because:
 	A. While this solution could work, it requires more technical knowledge and coding experience to use Amazon SageMaker directly, which the company lacks.
 	B. This solution also requires more technical expertise to use SageMaker built-in algorithms, which doesn't align with the company's lack of coding experience and ML knowledge.
-	C. Amazon Personalize is primarily used for personalization and recommendation systems, not for general demand forecasting. It's not the most suitable tool for this use case.
+	C. While Amazon Forecast is designed for time-series forecasting, using it through Data Wrangler still requires coding expertise and ML knowledge that the company doesn't possess, making it less suitable than the no-code SageMaker Canvas option.
 	Resource URL:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html
 
 Q58
-A company is building a customer service chatbot. The company wants the chatbot to improve its responses by learning from past interactions and online resources.  
-Which AI learning strategy provides this self-improvement capability?
+A company is developing a customer service virtual assistant. The company wants the assistant to enhance its responses by learning from historical conversations and web-based knowledge sources.  
+Which AI learning approach enables this autonomous improvement capability?
 Options:
 A. Supervised learning with a manually curated dataset of good responses and bad responses
 B. Reinforcement learning with rewards for positive customer feedback
 C. Unsupervised learning to find clusters of similar customer inquiries
-D. Supervised learning with a continuously updated FAQ database
+D. Transfer learning with pre-trained language models
 
 Correct Answer:
 	B. Reinforcement learning with rewards for positive customer feedback
@@ -912,16 +901,16 @@ Correct Answer:
 	The other answers are not suitable/not relevant because:
 	A. Supervised learning with a manually curated dataset: This approach doesn't allow for continuous improvement based on new interactions. It relies on pre-labeled data and doesn't provide the self-improvement capability required.
 	C. Unsupervised learning to find clusters: While this could be useful for organizing customer inquiries, it doesn't directly improve the chatbot's responses or provide a mechanism for learning from past interactions.
-	D. Supervised learning with a continuously updated FAQ database: This approach, while potentially useful, doesn't fully capture the requirement for the chatbot to learn from its interactions. It's more about updating the knowledge base rather than learning from the outcomes of its responses.
+	D. Transfer learning with pre-trained language models: While this leverages existing knowledge from pre-trained models, it doesn't provide the feedback-based improvement mechanism needed for the chatbot to learn from its own interactions and customer feedback.
 	Resource URL:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/reinforcement-learning.html
 
 Q59
-An AI engineer has built a deep learning model to classify the types of materials in images. The AI engineer now wants to measure the model performance.  
-Which metric will help the AI practitioner evaluate the performance of the model?
+An AI engineer has created a neural network model for identifying different materials within photography. The engineer is seeking to evaluate model effectiveness.  
+Which measurement tool would most assist the AI professional in assessing the model's classification capability?
 Options:
 A. Confusion matrix
-B. Correlation matrix
+B. Covariance matrix
 C. R2 score
 D. Mean squared error (MSE)
 
@@ -938,9 +927,9 @@ Correct Answer:
 	   * Precision
 	   * Recall
 	   * F1-score
-	1. It's specifically designed for classification problems, which matches the scenario of classifying materials in images
+	4. It's specifically designed for classification problems, which matches the scenario of classifying materials in images
 	The other answers are not suitable/not relevant because:
-	B. Correlation matrix: This shows relationships between variables in the dataset, not model performance. It's not useful for evaluating classification accuracy.
+	B. Covariance matrix: This statistical tool shows how variables vary together and their relationship strength, but doesn't evaluate classification performance or prediction accuracy.
 	C. R2 score: This is a metric for regression problems that measures how well the model fits the data. It's not appropriate for classification tasks.
 	D. Mean squared error (MSE): This is also a metric for regression problems that measures the average squared difference between predicted and actual values. It's not suitable for classification tasks.
 	Resource URLs:
@@ -948,13 +937,13 @@ Correct Answer:
 	https://docs.aws.amazon.com/machine-learning/latest/dg/evaluating-model-performance.html
 
 Q62
-A startup company has project requirement to build an ML model to analyze archived data. The company must perform inference on large datasets that are multiple GBs in size. The company does not required to access the model predictions immediately.  
-Which Amazon SageMaker inference option will meet these requirements?
+A startup company needs to develop an ML model to analyze historical data archives. The company must run inference on large datasets measuring multiple GBs in size. The company doesn't need immediate access to the model's predictions.
+Which Amazon SageMaker inference option will meet these requirements most effectively?
 Options:
 A. Batch transform
 B. Real-time inference
 C. Serverless inference
-D. Asynchronous inference
+D. Multimodel endpoints
 
 Correct Answer:
 	A. Batch transform
@@ -970,18 +959,18 @@ Correct Answer:
 		The other answers are not suitable/not relevant because:
 		B. Real-time inference: This is designed for scenarios requiring immediate responses and is not cost-effective for large batch processing of archived data.
 		C. Serverless inference: While this automatically manages infrastructure, it's better suited for workloads with intermittent traffic patterns and smaller payload sizes.
-		D. Asynchronous inference: While this handles long processing times, it's typically used for individual requests that take a long time to process, not necessarily for large batch datasets.
+		D. Multimodel endpoints: This option allows hosting multiple models on a single endpoint to share computing resources, but it's designed for reducing costs when deploying multiple models, not specifically for processing large batches of data. It doesn't address the requirement for processing large datasets in a non-time-sensitive manner.
 	Resource URLs:
 	https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html
 
 
 Q68
-A company manually reviews all submitted resumes in PDF format. As the company business is growing, the company expects the volume of resumes to exceed the company's review capacity. The company needs an automated system to convert the PDF resumes into plain text format for additional processing.  
+A company manually examines all submitted resumes in PDF format. As the business grows rapidly, the company anticipates the number of resumes will surpass their review capacity. The company needs an automated solution to convert PDF resumes into plain text format for further processing.
 Which AWS service meets this requirement?
 Options:
 A. Amazon Textract
 B. Amazon Personalize
-C. Amazon Lex
+C. Amazon Comprehend
 D. Amazon Transcribe
 
 Correct Answer:
@@ -997,7 +986,7 @@ Correct Answer:
 	5. Process multiple types of documents including resumes
 	The other answers are not suitable/not relevant because:
 	B. Amazon Personalize - This service is for creating personalized recommendations and is not related to document text extraction.
-	C. Amazon Lex - This is a service for building conversational interfaces using voice and text, not for document processing.
+	C. Amazon Comprehend - This service analyzes text to extract insights and relationships in content, but it doesn't convert PDF documents to text format. It works with text that's already been extracted, making it unsuitable for the initial PDF conversion requirement.
 	D. Amazon Transcribe - This service converts speech to text (audio/video to text) and is not designed for extracting text from PDF documents.
 	Resource URL:
 	https://docs.aws.amazon.com/textract/latest/dg/what-is.html
